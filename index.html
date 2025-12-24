@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -36,30 +35,16 @@
     header { padding: 40px 20px; }
     h1 { font-size: 2.5em; }
     .counter { font-size: 1.2em; margin-top: 10px; }
-    .controls {
-      background: rgba(255,255,255,0.6);
-      padding: 20px;
-      border-radius: 20px;
-      margin: 20px;
-    }
-    input, button {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #f3a4b5;
-      width: 90%;
-      max-width: 400px;
-    }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 15px;
       padding: 20px;
     }
     .gallery img {
       width: 100%;
       border-radius: 15px;
-      animation: fade 8s infinite;
+      animation: fade 10s infinite;
     }
     @keyframes fade {
       0% { opacity: 0; }
@@ -95,51 +80,37 @@
   <div class="counter" id="counter"></div>
 </header>
 
-<div class="controls">
-  <input type="date" id="dateInput" />
-  <input type="file" id="photoInput" accept="image/*" multiple />
-  <input type="file" id="musicInput" accept="audio/*" />
-  <button onclick="applyChanges()">Aplicar</button>
-  <audio id="music" controls style="width:90%;"></audio>
-</div>
+<audio id="music" src="musica.mp3" loop></audio>
 
-<section class="gallery" id="gallery"></section>
+<section class="gallery">
+  <img src="fotos/foto1.jpg" />
+  <img src="fotos/foto2.jpg" />
+  <img src="fotos/foto3.jpg" />
+  <img src="fotos/foto4.jpg" />
+</section>
 
 <div class="final-message">
   Kerolayne, cada momento ao seu lado é um presente. Obrigado por ser meu amor 💖
 </div>
 
 <script>
+  const startDate = new Date('2023-01-01'); // ALTERE PARA A DATA DE VOCÊS
+
   function startSite() {
     document.getElementById('start').style.display = 'none';
     document.getElementById('music').play();
     setInterval(createHeart, 800);
   }
 
-  function applyChanges() {
-    const date = new Date(document.getElementById('dateInput').value);
-    if (date) updateCounter(date);
-
-    const gallery = document.getElementById('gallery');
-    gallery.innerHTML = '';
-    Array.from(document.getElementById('photoInput').files).forEach((file, i) => {
-      const img = document.createElement('img');
-      img.src = URL.createObjectURL(file);
-      img.style.animationDelay = `${i * 4}s`;
-      gallery.appendChild(img);
-    });
-
-    const musicFile = document.getElementById('musicInput').files[0];
-    if (musicFile) document.getElementById('music').src = URL.createObjectURL(musicFile);
-  }
-
-  function updateCounter(startDate) {
+  function updateCounter() {
     setInterval(() => {
       const now = new Date();
       const diff = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
       document.getElementById('counter').innerText = `Estamos juntos há ${diff} dias ❤️`;
     }, 1000);
   }
+
+  updateCounter();
 
   function createHeart() {
     const heart = document.createElement('div');
