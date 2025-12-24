@@ -10,10 +10,9 @@
  margin:0;
  padding:0;
  box-sizing:border-box;
- -webkit-tap-highlight-color:transparent;
  user-select:none;
  -webkit-user-select:none;
- touch-action:manipulation;
+ -webkit-tap-highlight-color:transparent;
 }
 
 body{
@@ -29,7 +28,6 @@ button{
  background:none;
  color:inherit;
  cursor:pointer;
- outline:none;
 }
 
 /* START */
@@ -55,8 +53,6 @@ button{
 
 /* HEADER */
 header{padding:70px 20px 20px}
-header h2{font-size:2.2em}
-
 .counter{
  display:flex;
  justify-content:center;
@@ -115,15 +111,13 @@ header h2{font-size:2.2em}
  transition:.15s;
 }
 .emoji-btn:active{transform:scale(.85)}
-.emoji-btn:hover{box-shadow:0 0 20px rgba(167,139,250,.7)}
 
-/* SECRET BUTTON */
+/* SECRET PHRASE */
 #secretPhrase{
  display:none;
  margin:25px auto;
  padding:14px 26px;
  border-radius:30px;
- font-size:.95em;
  background:rgba(255,255,255,.18);
  border:1px solid rgba(255,255,255,.3);
  animation:shake 2s infinite;
@@ -156,7 +150,7 @@ header h2{font-size:2.2em}
  to{transform:scale(1);opacity:1}
 }
 
-/* HEARTS (botão ❤️ normal) */
+/* HEARTS */
 .heart{
  position:fixed;
  font-size:22px;
@@ -184,6 +178,24 @@ header h2{font-size:2.2em}
  to{transform:translate(var(--x),var(--y)) scale(.2);opacity:0}
 }
 
+/* SKY TEXT */
+.sky-text{
+ position:fixed;
+ top:20%;
+ left:50%;
+ transform:translateX(-50%);
+ font-size:2.2em;
+ font-weight:bold;
+ opacity:0;
+ z-index:8500;
+ animation:sky 3s ease forwards;
+}
+@keyframes sky{
+ 0%{opacity:0;transform:translate(-50%,20px)}
+ 30%{opacity:1}
+ 100%{opacity:0;transform:translate(-50%,-30px)}
+}
+
 /* CHOICE */
 .choice{
  display:flex;
@@ -199,10 +211,7 @@ header h2{font-size:2.2em}
 .yes{background:#22c55e;color:white}
 .no{background:#ef4444;color:white}
 
-footer{
- padding:40px 20px;
- opacity:.6;
-}
+footer{padding:40px;opacity:.6}
 </style>
 </head>
 
@@ -244,7 +253,7 @@ footer{
 <div class="modal" id="letterModal" onclick="closeAll()">
  <div class="modal-box">
   <h3>Minha carta 💜</h3>
-  <p>Desde 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor. Eu te amo infinitamente.</p>
+  <p>Desde 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor.</p>
  </div>
 </div>
 
@@ -293,7 +302,7 @@ function start(){
 function counter(){
  const diff=Date.now()-START;
  days.innerText=Math.floor(diff/86400000)+1;
- hours.innerText=Math.floor(diff/3600000);
+ hours.innerText=Math.floor(diff/3600000)%24;
  minutes.innerText=Math.floor(diff/60000)%60;
  seconds.innerText=Math.floor(diff/1000)%60;
 }
@@ -305,10 +314,8 @@ function slide(){
 
 function hearts(e){
  clicks++;
- if(clicks===3){
-   document.getElementById('secretPhrase').style.display='inline-block';
- }
- for(let i=0;i<30;i++){
+ if(clicks===3) secretPhrase.style.display='inline-block';
+ for(let i=0;i<25;i++){
   const h=document.createElement('div');
   h.className='heart';
   h.innerText=['❤️','💜','💖','💕'][Math.floor(Math.random()*4)];
@@ -332,17 +339,19 @@ function closeAll(){
  proposalModal.style.display='none';
  noModal.style.display='none';
 }
-
-function openProposal(){
- proposalModal.style.display='flex';
-}
+function openProposal(){proposalModal.style.display='flex'}
 
 function accepted(){
  launchFireworks();
- localStorage.setItem('sheSaidYes','true');
- proposalModal.querySelector('h2').innerText='Ela disse SIM 💜💍';
- proposalModal.querySelector('p').innerText='Esse momento vai ficar guardado para sempre.';
- setTimeout(()=>proposalModal.style.display='none',4500);
+ showSkyText();
+}
+
+function showSkyText(){
+ const t=document.createElement('div');
+ t.className='sky-text';
+ t.innerText='ELA DISSE SIM 💜💍';
+ document.body.appendChild(t);
+ setTimeout(()=>t.remove(),3000);
 }
 
 function launchFireworks(){
@@ -379,3 +388,4 @@ function nope(){
 
 </body>
 </html>
+
