@@ -7,20 +7,19 @@
 
   <style>
     :root {
-      --pink: #ff6f91;
-      --light: #fff5f8;
-      --dark: #7a2e3a;
+      --purple-dark: #1b1026;
+      --purple-main: #6d28d9;
+      --purple-soft: #a78bfa;
+      --text-light: #f5f3ff;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(180deg, #ffe3ec, #fff);
-      color: var(--dark);
+      background: linear-gradient(180deg, #12091c, var(--purple-dark));
+      color: var(--text-light);
       text-align: center;
     }
 
@@ -28,13 +27,12 @@
     .start {
       position: fixed;
       inset: 0;
-      background: linear-gradient(135deg, #ff9ab3, #ffd1dc);
+      background: radial-gradient(circle at top, var(--purple-main), var(--purple-dark));
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 999;
-      color: #fff;
       padding: 20px;
     }
 
@@ -45,23 +43,20 @@
 
     .start button {
       margin-top: 25px;
-      padding: 15px 35px;
+      padding: 15px 40px;
       border-radius: 40px;
       border: none;
       font-size: 1.1em;
-      background: #fff;
-      color: var(--pink);
+      background: linear-gradient(135deg, var(--purple-soft), var(--purple-main));
+      color: #1b1026;
       cursor: pointer;
     }
 
-    /* HEADER */
-    header {
-      padding: 60px 20px 30px;
-    }
+    header { padding: 60px 20px 20px; }
 
     header h2 {
-      font-size: 2.2em;
-      margin-bottom: 10px;
+      font-size: 2.3em;
+      margin-bottom: 12px;
     }
 
     .counter {
@@ -69,20 +64,20 @@
       opacity: 0.9;
     }
 
-    /* GALLERY */
+    /* SLIDER */
     .slider {
       position: relative;
       width: 90%;
       max-width: 420px;
-      margin: 30px auto;
+      margin: 35px auto;
       overflow: hidden;
-      border-radius: 25px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      border-radius: 26px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.5);
     }
 
     .slides {
       display: flex;
-      transition: transform 0.6s ease;
+      transition: transform 0.7s ease;
     }
 
     .slides img {
@@ -91,57 +86,49 @@
       object-fit: cover;
     }
 
-    /* MESSAGE */
     .message {
-      padding: 30px 25px;
+      padding: 35px 25px;
       font-size: 1.2em;
-      line-height: 1.6em;
+      line-height: 1.7em;
+      color: #e9d5ff;
     }
 
     /* HEARTS */
     .heart {
       position: fixed;
-      color: var(--pink);
+      color: var(--purple-soft);
       font-size: 18px;
       animation: float 6s linear forwards;
       pointer-events: none;
     }
 
     @keyframes float {
-      from {
-        transform: translateY(100vh);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-10vh);
-        opacity: 0;
-      }
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
     }
 
     footer {
       padding: 40px 20px;
       font-size: 0.9em;
-      opacity: 0.7;
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
 
-<!-- START -->
 <div class="start" id="start">
-  <h1>Para você, meu amor ❤️</h1>
-  <p>Uma pequena lembrança da nossa história</p>
+  <h1>Para você, meu amor 💜</h1>
+  <p>Uma lembrança feita com carinho</p>
   <button onclick="startExperience()">Começar</button>
 </div>
 
 <audio id="music" src="musica.mp3" loop></audio>
 
 <header>
-  <h2>Kerolayne, meu amor 💕</h2>
+  <h2>Kerolayne, meu amor 💜</h2>
   <div class="counter" id="counter"></div>
 </header>
 
-<!-- SLIDER -->
 <div class="slider">
   <div class="slides" id="slides">
     <img src="fotos/foto1.jpg">
@@ -152,19 +139,17 @@
 </div>
 
 <div class="message">
-  Desde o dia <strong>06/06/2025</strong>, minha vida ficou mais bonita com você.
+  Desde o dia <strong>06/06/2025</strong>, cada segundo ao seu lado faz minha vida ter mais sentido.
   <br><br>
-  Cada sorriso, cada momento e cada detalhe ao seu lado fazem tudo valer a pena.
-  <br><br>
-  Obrigado por ser exatamente quem você é. ❤️
+  Você é meu lugar seguro, meu sorriso fácil e minha melhor escolha.
 </div>
 
 <footer>
-  Feito com amor, só para você 🌸
+  Feito com amor infinito 💜
 </footer>
 
 <script>
-  const startDate = new Date('2025-06-06');
+  const startDate = new Date('2025-06-06T00:00:00');
   const slides = document.getElementById('slides');
   let index = 0;
 
@@ -179,8 +164,17 @@
   function startCounter() {
     setInterval(() => {
       const now = new Date();
-      const days = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-      document.getElementById('counter').innerText = `Estamos juntos há ${days} dias ❤️`;
+      let diff = Math.floor((now - startDate) / 1000);
+
+      const days = Math.floor(diff / 86400);
+      diff %= 86400;
+      const hours = Math.floor(diff / 3600);
+      diff %= 3600;
+      const minutes = Math.floor(diff / 60);
+      const seconds = diff % 60;
+
+      document.getElementById('counter').innerText =
+        `Estamos juntos há ${days} dias, ${hours}h ${minutes}m ${seconds}s 💜`;
     }, 1000);
   }
 
@@ -194,7 +188,7 @@
   function createHeart() {
     const heart = document.createElement('div');
     heart.className = 'heart';
-    heart.innerText = '❤️';
+    heart.innerText = '💜';
     heart.style.left = Math.random() * 100 + 'vw';
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 6000);
