@@ -6,7 +6,12 @@
 <title>Kerolayne 💜 Nossa História</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 body{
   font-family:'Segoe UI',sans-serif;
@@ -16,7 +21,7 @@ body{
   overflow-x:hidden;
 }
 
-/* 🌌 CÉU */
+/* 🌌 CÉU ESTRELADO */
 .stars{
   position:fixed;
   inset:0;
@@ -26,15 +31,15 @@ body{
     radial-gradient(1px 1px at 10% 90%,#fff,transparent),
     radial-gradient(2px 2px at 90% 20%,#fff,transparent);
   background-size:300px 300px;
-  animation:starsMove 70s linear infinite;
+  animation:stars 60s linear infinite;
   opacity:.25;
   z-index:0;
 }
-@keyframes starsMove{
+@keyframes stars{
   to{background-position:-1200px 1200px}
 }
 
-/* 🔒 TELA DE SENHA */
+/* 🔐 TELA DE SENHA */
 .lock{
   position:fixed;
   inset:0;
@@ -43,31 +48,25 @@ body{
   justify-content:center;
   align-items:center;
   z-index:9999;
-  animation:fadeIn .8s ease;
 }
-
 .lock-box{
-  background:rgba(255,255,255,.14);
+  background:rgba(255,255,255,.15);
   backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.3);
-  padding:38px 32px;
-  border-radius:28px;
+  padding:32px;
+  border-radius:26px;
   width:90%;
-  max-width:360px;
+  max-width:340px;
 }
-
-.lock-box h2{margin-bottom:6px}
-.lock-box p{font-size:.9em;opacity:.85;margin-bottom:22px}
-
+.lock-box h2{margin-bottom:10px}
+.lock-box p{opacity:.8;margin-bottom:20px}
 .lock-box input{
   width:100%;
   padding:14px;
   border-radius:14px;
   border:none;
-  font-size:1em;
-  margin-bottom:16px;
+  margin-bottom:15px;
 }
-
 .lock-box button{
   width:100%;
   padding:14px;
@@ -78,16 +77,8 @@ body{
   font-size:1em;
 }
 
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes shake{
-  0%,100%{transform:translateX(0)}
-  25%{transform:translateX(-6px)}
-  50%{transform:translateX(6px)}
-}
-
-/* CONTEÚDO */
+/* HEADER */
 header{padding:70px 20px 20px;position:relative;z-index:2}
-
 .counter{
   display:flex;
   justify-content:center;
@@ -96,10 +87,13 @@ header{padding:70px 20px 20px;position:relative;z-index:2}
 }
 .time-box{
   background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
   border-radius:18px;
   padding:16px 20px;
   min-width:90px;
 }
+.time-number{font-size:1.8em;font-weight:bold}
+.time-label{font-size:.7em;opacity:.8}
 
 /* SLIDER */
 .slider{
@@ -108,38 +102,73 @@ header{padding:70px 20px 20px;position:relative;z-index:2}
   margin:35px auto;
   overflow:hidden;
   border-radius:26px;
+  box-shadow:0 20px 45px rgba(0,0,0,.5);
   z-index:2;
 }
-.slides{display:flex;transition:.8s ease}
+.slides{display:flex;transition:.7s ease}
 .slides img{width:100%;flex-shrink:0}
 
-/* BOTÃO */
-.buttons{padding:30px;z-index:2}
+/* BOTÕES */
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  padding:30px;
+  z-index:2;
+}
 .emoji-btn{
   width:64px;
   height:64px;
   border-radius:50%;
   font-size:30px;
   background:rgba(255,255,255,.18);
-  border:none;
+  border:1px solid rgba(255,255,255,.25);
+}
+
+/* BOTÃO SECRETO */
+#secretPhrase{
+  display:none;
+  margin:20px auto;
+  padding:14px 26px;
+  border-radius:30px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.3);
+}
+
+/* MODAIS */
+.modal{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top,#3b1d63,#12091c);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:4000;
+}
+.modal-box{
+  background:linear-gradient(180deg,#2a1740,#160b26);
+  padding:32px;
+  border-radius:22px;
+  max-width:90%;
 }
 
 /* FOGOS */
 .rocket{
   position:fixed;
   width:4px;
-  height:20px;
+  height:18px;
   background:linear-gradient(to top,#fff,#a855f7);
-  animation:rocketUp 1.3s ease-out forwards;
+  animation:rocketUp 1.2s ease-out forwards;
 }
-@keyframes rocketUp{to{transform:translateY(-500px);opacity:0}}
-
+@keyframes rocketUp{
+  to{transform:translateY(-450px);opacity:0}
+}
 .firework{
   position:fixed;
   width:6px;
   height:6px;
   border-radius:50%;
-  animation:firework 2s ease-out forwards;
+  animation:firework 1.8s ease-out forwards;
 }
 @keyframes firework{
   to{transform:translate(var(--x),var(--y)) scale(.2);opacity:0}
@@ -148,7 +177,7 @@ header{padding:70px 20px 20px;position:relative;z-index:2}
 /* TEXTO NO CÉU */
 .sky-text{
   position:fixed;
-  top:18%;
+  top:20%;
   left:50%;
   transform:translateX(-50%);
   font-size:2.2em;
@@ -169,12 +198,12 @@ footer{padding:40px;opacity:.6;z-index:2}
 
 <div class="stars"></div>
 
-<!-- 🔒 SENHA -->
+<!-- 🔐 SENHA -->
 <div class="lock" id="lock">
-  <div class="lock-box" id="lockBox">
+  <div class="lock-box">
     <h2>💜 Só quem ama entra</h2>
-    <p>Essa página guarda algo especial…</p>
-    <input type="password" id="password" placeholder="Digite a senha">
+    <p>Digite a senha para continuar</p>
+    <input type="password" id="password">
     <button onclick="unlock()">Entrar</button>
   </div>
 </div>
@@ -182,10 +211,10 @@ footer{padding:40px;opacity:.6;z-index:2}
 <header>
   <h2>Kerolayne, meu amor 💜</h2>
   <div class="counter">
-    <div class="time-box"><span id="days">0</span> dias</div>
-    <div class="time-box"><span id="hours">0</span> h</div>
-    <div class="time-box"><span id="minutes">0</span> min</div>
-    <div class="time-box"><span id="seconds">0</span> s</div>
+    <div class="time-box"><div class="time-number" id="days">0</div><div class="time-label">DIAS</div></div>
+    <div class="time-box"><div class="time-number" id="hours">0</div><div class="time-label">HORAS</div></div>
+    <div class="time-box"><div class="time-number" id="minutes">0</div><div class="time-label">MIN</div></div>
+    <div class="time-box"><div class="time-number" id="seconds">0</div><div class="time-label">SEG</div></div>
   </div>
 </header>
 
@@ -199,46 +228,47 @@ footer{padding:40px;opacity:.6;z-index:2}
 </div>
 
 <div class="buttons">
-  <button class="emoji-btn" onclick="accepted()">💍</button>
+  <button class="emoji-btn" onclick="hearts(event)">❤️</button>
+  <button class="emoji-btn" onclick="openLetter()">✉️</button>
+  <button class="emoji-btn" onclick="toggleMusic()">🎵</button>
+</div>
+
+<button id="secretPhrase" onclick="openProposal()">Algumas escolhas mudam tudo… 💜</button>
+
+<!-- MODAIS -->
+<div class="modal" id="letterModal" onclick="closeAll()">
+  <div class="modal-box">
+    <h3>Minha carta 💜</h3>
+    <p>Desde 06/06/2025 minha vida ganhou mais cor, sentido e amor.</p>
+  </div>
+</div>
+
+<div class="modal" id="proposalModal">
+  <div class="modal-box">
+    <h2>Quer casar comigo? 💍💜</h2>
+    <button onclick="accepted()">Aceito 💍</button>
+  </div>
 </div>
 
 <footer>Feito com amor infinito 💜</footer>
 
-<!-- 🔊 SOM -->
-<audio id="unlockSound">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c6b5b44c7.mp3" type="audio/mpeg">
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c6b5b44c7.mp3">
 </audio>
 
 <script>
 const PASSWORD="060620";
 const START=new Date('2025-06-06T00:00:00').getTime();
-const slides=document.getElementById('slides');
-let index=0;
-
-/* 🔓 AUTO LOGIN */
-if(localStorage.getItem('unlocked')==="true"){
-  document.getElementById('lock').style.display='none';
-  startSite();
-}
+let index=0, clicks=0, playing=false;
 
 function unlock(){
-  const v=password.value;
-  const box=lockBox;
-  if(v===PASSWORD){
-    localStorage.setItem('unlocked','true');
-    unlockSound.play();
-    navigator.vibrate && navigator.vibrate(60);
-    lock.style.opacity=0;
-    setTimeout(()=>lock.style.display='none',600);
-    startSite();
-  }else{
-    box.style.animation='shake .3s';
-    navigator.vibrate && navigator.vibrate(80);
-    setTimeout(()=>box.style.animation='',300);
+  if(password.value===PASSWORD){
+    lock.style.display='none';
+    start();
   }
 }
 
-function startSite(){
+function start(){
   setInterval(counter,1000);
   setInterval(slide,3500);
 }
@@ -256,37 +286,45 @@ function slide(){
   slides.style.transform=`translateX(-${index*100}%)`;
 }
 
-function accepted(){
-  launchRockets();
-  setTimeout(showText,2000);
+function hearts(e){
+  clicks++;
+  if(clicks===3) secretPhrase.style.display='inline-block';
 }
 
-function launchRockets(){
-  for(let i=0;i<6;i++){
+function toggleMusic(){
+  playing=!playing;
+  playing?music.play():music.pause();
+}
+
+function openLetter(){letterModal.style.display='flex'}
+function closeAll(){letterModal.style.display='none';proposalModal.style.display='none'}
+function openProposal(){proposalModal.style.display='flex'}
+
+function accepted(){
+  for(let i=0;i<5;i++){
     setTimeout(()=>{
       const r=document.createElement('div');
       r.className='rocket';
       r.style.left=Math.random()*innerWidth+'px';
       r.style.top=innerHeight+'px';
       document.body.appendChild(r);
-      setTimeout(()=>explode(r.offsetLeft,innerHeight-520),1200);
-      setTimeout(()=>r.remove(),1300);
-    },i*420);
+      setTimeout(()=>explode(r.offsetLeft,innerHeight-450),1100);
+      setTimeout(()=>r.remove(),1200);
+    },i*350);
   }
+  showText();
 }
 
 function explode(x,y){
-  const colors=['#a855f7','#ec4899','#fde047'];
-  for(let i=0;i<60;i++){
-    const p=document.createElement('div');
-    p.className='firework';
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    p.style.left=x+'px';
-    p.style.top=y+'px';
-    p.style.setProperty('--x',(Math.random()*600-300)+'px');
-    p.style.setProperty('--y',(Math.random()*600-300)+'px');
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),2000);
+  for(let i=0;i<50;i++){
+    const f=document.createElement('div');
+    f.className='firework';
+    f.style.left=x+'px';
+    f.style.top=y+'px';
+    f.style.setProperty('--x',(Math.random()*600-300)+'px');
+    f.style.setProperty('--y',(Math.random()*600-300)+'px');
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1800);
   }
 }
 
