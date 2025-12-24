@@ -6,94 +6,94 @@
 <title>Kerolayne 💜 Nossa História</title>
 
 <style>
-:root {
-  --purple-dark:#12091c;
-  --purple-main:#6d28d9;
-  --purple-soft:#a78bfa;
-  --text:#f5f3ff;
+:root{
+ --purple-dark:#12091c;
+ --purple-main:#6d28d9;
+ --purple-soft:#a78bfa;
+ --text:#f5f3ff;
 }
 *{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(180deg,var(--purple-dark),#1b1026);
-  color:var(--text);
-  text-align:center;
+ margin:0;
+ font-family:'Segoe UI',sans-serif;
+ background:linear-gradient(180deg,var(--purple-dark),#1b1026);
+ color:var(--text);
+ text-align:center;
+ overflow-x:hidden;
 }
 
 .start{
-  position:fixed; inset:0;
-  background:radial-gradient(circle at top,var(--purple-main),var(--purple-dark));
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  z-index:999;
+ position:fixed; inset:0;
+ background:radial-gradient(circle at top,var(--purple-main),var(--purple-dark));
+ display:flex; flex-direction:column; justify-content:center; align-items:center;
+ z-index:999;
 }
 .start h1{font-size:2.3em}
 .start button{
-  margin-top:25px; padding:15px 40px; border-radius:40px;
-  border:none; font-size:1.1em; cursor:pointer;
-  background:linear-gradient(135deg,var(--purple-soft),var(--purple-main));
+ margin-top:25px; padding:15px 40px; border-radius:40px;
+ border:none; font-size:1.1em; cursor:pointer;
+ background:linear-gradient(135deg,var(--purple-soft),var(--purple-main));
 }
 
 .sound-btn{
-  position:fixed; top:15px; right:15px;
-  width:44px; height:44px; border-radius:50%;
-  background:rgba(255,255,255,0.15);
-  border:1px solid rgba(255,255,255,0.25);
-  color:var(--text); font-size:18px; display:none;
+ position:fixed; top:15px; right:15px;
+ width:44px; height:44px; border-radius:50%;
+ background:rgba(255,255,255,0.15);
+ border:1px solid rgba(255,255,255,0.25);
+ color:var(--text); font-size:18px; display:none; z-index:10
 }
 
 header{padding:70px 20px 20px}
 header h2{font-size:2.2em}
 
-.counter{
-  display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:20px;
-}
+.counter{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:20px}
 .time-box{
-  background:rgba(255,255,255,0.12);
-  border:1px solid rgba(255,255,255,0.25);
-  border-radius:18px; padding:14px 18px; min-width:90px;
-  animation:pulse 1.5s infinite alternate;
+ background:rgba(255,255,255,0.12);
+ border:1px solid rgba(255,255,255,0.25);
+ border-radius:18px; padding:14px 18px; min-width:90px;
+ animation:pulse 1.5s infinite alternate
 }
 .time-number{font-size:1.8em; font-weight:bold}
 .time-label{font-size:0.7em; opacity:.8}
 @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.05)}}
 
-.slider{
-  width:90%; max-width:420px; margin:35px auto; overflow:hidden;
-  border-radius:26px; box-shadow:0 20px 45px rgba(0,0,0,.5)
-}
+.slider{width:90%; max-width:420px; margin:35px auto; overflow:hidden; border-radius:26px; box-shadow:0 20px 45px rgba(0,0,0,.5)}
 .slides{display:flex; transition:transform .7s ease}
 .slides img{width:100%; flex-shrink:0}
 
-.buttons{
-  display:flex; flex-direction:column; gap:14px; padding:30px 20px
-}
+.buttons{display:flex; justify-content:center; gap:20px; padding:30px}
 .emoji-btn{
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  font-size:28px;
-  border:none;
-  cursor:pointer;
-  background:rgba(255,255,255,0.15);
-  border:1px solid rgba(255,255,255,0.25);
-  transition:transform .2s ease, background .2s ease;
+ width:64px; height:64px; border-radius:50%; font-size:30px;
+ border:none; cursor:pointer;
+ background:rgba(255,255,255,0.18);
+ border:1px solid rgba(255,255,255,0.25);
+ backdrop-filter:blur(6px);
+ transition:transform .2s ease, box-shadow .2s ease
 }
-.emoji-btn:active{transform:scale(0.9)}
+.emoji-btn:active{transform:scale(.85)}
+.emoji-btn:hover{box-shadow:0 0 20px rgba(167,139,250,.6)}
 
 .modal{
-  position:fixed; inset:0; background:rgba(0,0,0,.6);
-  display:none; justify-content:center; align-items:center; z-index:1000
+ position:fixed; inset:0; background:rgba(0,0,0,.65);
+ display:none; justify-content:center; align-items:center; z-index:1000;
+ animation:fade .3s ease
 }
-.modal-content{
-  background:#1b1026; padding:30px; border-radius:20px; max-width:90%;
+.modal-box{
+ background:linear-gradient(180deg,#2a1740,#160b26);
+ padding:30px; border-radius:22px; max-width:90%;
+ animation:scaleIn .4s ease
 }
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
 
 .heart{
-  position:fixed; color:var(--purple-soft); font-size:18px;
-  animation:float 6s linear forwards; pointer-events:none
+ position:fixed; font-size:22px; pointer-events:none;
+ animation:explode 1.8s ease-out forwards
 }
-@keyframes float{from{transform:translateY(100vh)}to{transform:translateY(-10vh);opacity:0}}
+@keyframes explode{
+ from{transform:translate(0,0) scale(1); opacity:1}
+ to{transform:translate(var(--x),var(--y)) scale(.5); opacity:0}
+}
 
 footer{padding:40px 20px; opacity:.6}
 </style>
@@ -101,104 +101,104 @@ footer{padding:40px 20px; opacity:.6}
 <body>
 
 <div class="start" id="start">
-  <h1>Para você, meu amor 💜</h1>
-  <p>Uma experiência feita com carinho</p>
-  <button onclick="startExperience()">Começar</button>
+ <h1>Para você, meu amor 💜</h1>
+ <p>Uma experiência feita com carinho</p>
+ <button onclick="startExperience()">Começar</button>
 </div>
 
 <button class="sound-btn" id="soundBtn" onclick="toggleSound()">🔊</button>
 <audio id="music" src="musica.mp3" loop></audio>
 
 <header>
-  <h2>Kerolayne, meu amor 💜</h2>
-  <div class="counter">
-    <div class="time-box"><div class="time-number" id="days">0</div><div class="time-label">DIAS</div></div>
-    <div class="time-box"><div class="time-number" id="hours">0</div><div class="time-label">HORAS</div></div>
-    <div class="time-box"><div class="time-number" id="minutes">0</div><div class="time-label">MIN</div></div>
-    <div class="time-box"><div class="time-number" id="seconds">0</div><div class="time-label">SEG</div></div>
-  </div>
+ <h2>Kerolayne, meu amor 💜</h2>
+ <div class="counter">
+  <div class="time-box"><div class="time-number" id="days">0</div><div class="time-label">DIAS</div></div>
+  <div class="time-box"><div class="time-number" id="hours">0</div><div class="time-label">HORAS</div></div>
+  <div class="time-box"><div class="time-number" id="minutes">0</div><div class="time-label">MIN</div></div>
+  <div class="time-box"><div class="time-number" id="seconds">0</div><div class="time-label">SEG</div></div>
+ </div>
 </header>
 
 <div class="slider">
-  <div class="slides" id="slides">
-    <img src="fotos/foto1.jpg"><img src="fotos/foto2.jpg"><img src="fotos/foto3.jpg"><img src="fotos/foto4.jpg">
-  </div>
+ <div class="slides" id="slides">
+  <img src="fotos/foto1.jpg"><img src="fotos/foto2.jpg"><img src="fotos/foto3.jpg"><img src="fotos/foto4.jpg">
+ </div>
 </div>
 
 <div class="buttons">
-  <button class="emoji-btn" onclick="spreadHearts()">❤️</button>
-  <button class="emoji-btn" onclick="openLetter()">✉️</button>
-  <button class="emoji-btn" onclick="showMessage()">💌</button>
+ <button class="emoji-btn" onclick="explodeHearts(event)">❤️</button>
+ <button class="emoji-btn" onclick="openLetter()">✉️</button>
+ <button class="emoji-btn" onclick="openMessage()">💌</button>
 </div>
 
-<div class="modal" id="letterModal" onclick="closeLetter()">
-  <div class="modal-content">
-    <h3>Minha carta 💜</h3>
-    <p>Desde o dia 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor. Obrigado por ser você, por estar comigo e por transformar meus dias. Eu te amo infinitamente.</p>
-  </div>
+<div class="modal" id="letterModal" onclick="closeModal()">
+ <div class="modal-box">
+  <h3>Minha carta 💜</h3>
+  <p>Desde o dia 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor. Obrigado por ser você, por estar comigo e por transformar meus dias. Eu te amo infinitamente.</p>
+ </div>
+</div>
+
+<div class="modal" id="msgModal" onclick="closeModal()">
+ <div class="modal-box" id="msgBox"></div>
 </div>
 
 <footer>Feito com amor infinito 💜</footer>
 
 <script>
-const START= new Date('2025-06-06T00:00:00').getTime();
+const START=new Date('2025-06-06T00:00:00').getTime();
 const music=document.getElementById('music');
 const soundBtn=document.getElementById('soundBtn');
 const slides=document.getElementById('slides');
 let index=0;
 
-const messages=[
-  'Você é meu melhor lugar 💜',
-  'Meu amor por você só cresce 💜',
-  'Obrigado por existir 💜',
-  'Com você tudo faz sentido 💜'
+const msgs=[
+ 'Você é meu melhor lugar 💜',
+ 'Meu amor por você cresce a cada segundo 💜',
+ 'Obrigado por existir 💜',
+ 'Com você tudo faz sentido 💜'
 ];
 
 function startExperience(){
-  document.getElementById('start').style.display='none';
-  soundBtn.style.display='block';
-  music.play();
-  setInterval(createHeart,800);
-  setInterval(updateCounter,1000);
-  setInterval(slide,3500);
+ document.getElementById('start').style.display='none';
+ soundBtn.style.display='block';
+ music.play();
+ setInterval(updateCounter,1000);
+ setInterval(slide,3500);
 }
 
-function toggleSound(){
-  if(music.paused){music.play();soundBtn.innerText='🔊'}
-  else{music.pause();soundBtn.innerText='🔇'}
-}
+function toggleSound(){music.paused?(music.play(),soundBtn.innerText='🔊'):(music.pause(),soundBtn.innerText='🔇')}
 
 function updateCounter(){
-  const now=Date.now();
-  const diff=now-START;
-  document.getElementById('days').innerText=Math.floor(diff/86400000)+1;
-  document.getElementById('hours').innerText=Math.floor(diff/3600000);
-  document.getElementById('minutes').innerText=Math.floor(diff/60000)%60;
-  document.getElementById('seconds').innerText=Math.floor(diff/1000)%60;
+ const diff=Date.now()-START;
+ days.innerText=Math.floor(diff/86400000)+1;
+ hours.innerText=Math.floor(diff/3600000);
+ minutes.innerText=Math.floor(diff/60000)%60;
+ seconds.innerText=Math.floor(diff/1000)%60;
 }
 
-function slide(){
-  index=(index+1)%slides.children.length;
-  slides.style.transform=`translateX(-${index*100}%)`;
-}
+function slide(){index=(index+1)%slides.children.length;slides.style.transform=`translateX(-${index*100}%)`}
 
-function showMessage(){
-  alert(messages[Math.floor(Math.random()*messages.length)]);
-}
-
-function spreadHearts(){
-  for(let i=0;i<20;i++)createHeart();
+function explodeHearts(e){
+ const colors=['❤️','💜','💖','💕'];
+ for(let i=0;i<25;i++){
+  const h=document.createElement('div');
+  h.className='heart';
+  h.innerText=colors[Math.floor(Math.random()*colors.length)];
+  h.style.left=e.clientX+'px';
+  h.style.top=e.clientY+'px';
+  h.style.setProperty('--x',(Math.random()*300-150)+'px');
+  h.style.setProperty('--y',(Math.random()*300-150)+'px');
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),1800);
+ }
 }
 
 function openLetter(){document.getElementById('letterModal').style.display='flex'}
-function closeLetter(){document.getElementById('letterModal').style.display='none'}
-
-function createHeart(){
-  const h=document.createElement('div'); h.className='heart'; h.innerText='💜';
-  h.style.left=Math.random()*100+'vw'; document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
+function openMessage(){
+ document.getElementById('msgBox').innerText=msgs[Math.floor(Math.random()*msgs.length)];
+ document.getElementById('msgModal').style.display='flex'
 }
+function closeModal(){document.getElementById('letterModal').style.display='none';document.getElementById('msgModal').style.display='none'}
 </script>
 </body>
 </html>
-
