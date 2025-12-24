@@ -205,7 +205,8 @@
       const minutes = Math.floor(diff / 60);
       const seconds = diff % 60;
 
-      const totalHours = Math.floor((now.getTime() - START_TIMESTAMP) / 3600000);
+      const totalDays = Math.floor((now.getTime() - START_TIMESTAMP) / 86400000) + 1;
+      const totalHours = Math.floor((now.getTime() - START_TIMESTAMP) / 3600000);((now.getTime() - START_TIMESTAMP) / 3600000);
       const totalMinutes = Math.floor((now.getTime() - START_TIMESTAMP) / 60000);
       const totalSeconds = Math.floor((now.getTime() - START_TIMESTAMP) / 1000);
 
