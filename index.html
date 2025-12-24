@@ -169,6 +169,7 @@ header{padding:70px 20px 20px}
   border-radius:50%;
   pointer-events:none;
   z-index:9000;
+  box-shadow:0 0 12px currentColor;
   animation:firework 1.8s ease-out forwards;
 }
 @keyframes firework{
@@ -334,9 +335,59 @@ function closeAll(){
 }
 function openProposal(){proposalModal.style.display='flex'}
 
+/* 🎬 FINAL CINEMATOGRÁFICO */
 function accepted(){
-  launchFireworks();
+  cinematicFireworks();
   showSkyText();
+}
+
+function cinematicFireworks(){
+  for(let i=0;i<6;i++){
+    setTimeout(()=>{
+      launchFirework(Math.random()*innerWidth, innerHeight+20);
+    }, i*450);
+  }
+}
+
+function launchFirework(x,startY){
+  const rocket=document.createElement('div');
+  rocket.className='firework';
+  rocket.style.background='#fff';
+  rocket.style.left=x+'px';
+  rocket.style.top=startY+'px';
+  rocket.style.width='4px';
+  rocket.style.height='14px';
+  rocket.style.borderRadius='2px';
+  document.body.appendChild(rocket);
+
+  if(navigator.vibrate) navigator.vibrate(20);
+
+  const peakY=Math.random()*(innerHeight/2);
+
+  rocket.animate([
+    {transform:'translateY(0)'},
+    {transform:`translateY(-${startY-peakY}px)`}
+  ],{duration:900,easing:'ease-out'}).onfinish=()=>{
+    rocket.remove();
+    explodeFirework(x,peakY);
+  };
+}
+
+function explodeFirework(x,y){
+  const colors=['#a855f7','#ec4899','#fde047','#22d3ee','#ef4444'];
+  if(navigator.vibrate) navigator.vibrate([40,30,40]);
+
+  for(let i=0;i<70;i++){
+    const p=document.createElement('div');
+    p.className='firework';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.left=x+'px';
+    p.style.top=y+'px';
+    p.style.setProperty('--x',(Math.random()*700-350)+'px');
+    p.style.setProperty('--y',(Math.random()*700-350)+'px');
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1800);
+  }
 }
 
 function showSkyText(){
@@ -345,29 +396,6 @@ function showSkyText(){
   t.textContent='ELA DISSE SIM 💜💍';
   document.body.appendChild(t);
   setTimeout(()=>t.remove(),3000);
-}
-
-function launchFireworks(){
-  for(let i=0;i<6;i++){
-    setTimeout(()=>{
-      explode(Math.random()*innerWidth, Math.random()*innerHeight/2);
-    },i*350);
-  }
-}
-
-function explode(x,y){
-  const colors=['#a855f7','#ec4899','#22d3ee','#fde047','#ef4444'];
-  for(let i=0;i<50;i++){
-    const p=document.createElement('div');
-    p.className='firework';
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    p.style.left=x+'px';
-    p.style.top=y+'px';
-    p.style.setProperty('--x',(Math.random()*600-300)+'px');
-    p.style.setProperty('--y',(Math.random()*600-300)+'px');
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),1800);
-  }
 }
 
 function nope(){
