@@ -68,11 +68,18 @@ header h2{font-size:2.2em}
 .buttons{
   display:flex; flex-direction:column; gap:14px; padding:30px 20px
 }
-.action-btn{
-  padding:14px; border-radius:30px; border:none; cursor:pointer;
-  background:linear-gradient(135deg,var(--purple-soft),var(--purple-main));
-  font-size:1em
+.emoji-btn{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  font-size:28px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.25);
+  transition:transform .2s ease, background .2s ease;
 }
+.emoji-btn:active{transform:scale(0.9)}
 
 .modal{
   position:fixed; inset:0; background:rgba(0,0,0,.6);
@@ -119,9 +126,9 @@ footer{padding:40px 20px; opacity:.6}
 </div>
 
 <div class="buttons">
-  <button class="action-btn" onclick="showMessage()">💌 Mensagem surpresa</button>
-  <button class="action-btn" onclick="spreadHearts()">💜 Espalhar corações</button>
-  <button class="action-btn" onclick="openLetter()">📜 Carta para você</button>
+  <button class="emoji-btn" onclick="spreadHearts()">❤️</button>
+  <button class="emoji-btn" onclick="openLetter()">✉️</button>
+  <button class="emoji-btn" onclick="showMessage()">💌</button>
 </div>
 
 <div class="modal" id="letterModal" onclick="closeLetter()">
@@ -194,3 +201,4 @@ function createHeart(){
 </script>
 </body>
 </html>
+
