@@ -58,8 +58,15 @@ function openLetter(){letterModal.style.display='flex'}
 function openMessage(){msgBox.innerText=msgs[Math.floor(Math.random()*msgs.length)];msgModal.style.display='flex'}
 function closeModal(){letterModal.style.display='none';msgModal.style.display='none';proposalModal.style.display='none'}
 function openProposal(){proposalModal.style.display='flex'}
-function accepted(){explodeHearts({clientX:window.innerWidth/2,clientY:window.innerHeight/2});alert('Ela disse SIM 💜💍')}
+function accepted(){
+ explodeHearts({clientX:window.innerWidth/2,clientY:window.innerHeight/2});
+ localStorage.setItem('sheSaidYes','true');
+ proposalModal.querySelector('h2').innerText='Ela disse SIM 💜💍';
+ proposalModal.querySelector('p').innerText='Esse momento vai ficar guardado para sempre.';
+ setTimeout(()=>{proposalModal.style.display='none'},3500)
+});alert('Ela disse SIM 💜💍')}
 function nope(){alert('Essa opção não existe 😌💜')}
 </script>
 </body>
 </html>
+
