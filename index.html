@@ -1,180 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kerolayne ❤️ Nossa História</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerolayne 💜 Nossa História</title>
 
-  <style>
-    :root {
-      --purple-dark: #1b1026;
-      --purple-main: #6d28d9;
-      --purple-soft: #a78bfa;
-      --text-light: #f5f3ff;
-    }
+<style>
+:root {
+  --purple-dark:#12091c;
+  --purple-main:#6d28d9;
+  --purple-soft:#a78bfa;
+  --text:#f5f3ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(180deg,var(--purple-dark),#1b1026);
+  color:var(--text);
+  text-align:center;
+}
 
-    * { box-sizing: border-box; }
+.start{
+  position:fixed; inset:0;
+  background:radial-gradient(circle at top,var(--purple-main),var(--purple-dark));
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  z-index:999;
+}
+.start h1{font-size:2.3em}
+.start button{
+  margin-top:25px; padding:15px 40px; border-radius:40px;
+  border:none; font-size:1.1em; cursor:pointer;
+  background:linear-gradient(135deg,var(--purple-soft),var(--purple-main));
+}
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(180deg, #12091c, var(--purple-dark));
-      color: var(--text-light);
-      text-align: center;
-    }
+.sound-btn{
+  position:fixed; top:15px; right:15px;
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.25);
+  color:var(--text); font-size:18px; display:none;
+}
 
-    /* START SCREEN */
-    .start {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at top, var(--purple-main), var(--purple-dark));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      padding: 20px;
-    }
+header{padding:70px 20px 20px}
+header h2{font-size:2.2em}
 
-    .start h1 {
-      font-size: 2.4em;
-      margin-bottom: 10px;
-    }
+.counter{
+  display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:20px;
+}
+.time-box{
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:18px; padding:14px 18px; min-width:90px;
+  animation:pulse 1.5s infinite alternate;
+}
+.time-number{font-size:1.8em; font-weight:bold}
+.time-label{font-size:0.7em; opacity:.8}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.05)}}
 
-    .start button {
-      margin-top: 25px;
-      padding: 15px 40px;
-      border-radius: 40px;
-      border: none;
-      font-size: 1.1em;
-      background: linear-gradient(135deg, var(--purple-soft), var(--purple-main));
-      color: #1b1026;
-      cursor: pointer;
-    }
+.slider{
+  width:90%; max-width:420px; margin:35px auto; overflow:hidden;
+  border-radius:26px; box-shadow:0 20px 45px rgba(0,0,0,.5)
+}
+.slides{display:flex; transition:transform .7s ease}
+.slides img{width:100%; flex-shrink:0}
 
-    /* SOUND BUTTON */
-    .sound-btn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
-      color: var(--text-light);
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 18px;
-      cursor: pointer;
-      display: none;
-      z-index: 998;
-    }
+.buttons{
+  display:flex; flex-direction:column; gap:14px; padding:30px 20px
+}
+.action-btn{
+  padding:14px; border-radius:30px; border:none; cursor:pointer;
+  background:linear-gradient(135deg,var(--purple-soft),var(--purple-main));
+  font-size:1em
+}
 
-    header { padding: 70px 20px 20px; }
+.modal{
+  position:fixed; inset:0; background:rgba(0,0,0,.6);
+  display:none; justify-content:center; align-items:center; z-index:1000
+}
+.modal-content{
+  background:#1b1026; padding:30px; border-radius:20px; max-width:90%;
+}
 
-    header h2 {
-      font-size: 2.3em;
-      margin-bottom: 12px;
-    }
+.heart{
+  position:fixed; color:var(--purple-soft); font-size:18px;
+  animation:float 6s linear forwards; pointer-events:none
+}
+@keyframes float{from{transform:translateY(100vh)}to{transform:translateY(-10vh);opacity:0}}
 
-    .counter {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .time-box {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 18px;
-      padding: 14px 18px;
-      min-width: 90px;
-      animation: pulse 1.5s ease-in-out infinite alternate;
-    }
-
-    .time-number {
-      font-size: 1.8em;
-      font-weight: bold;
-      color: #f5f3ff;
-    }
-
-    .time-label {
-      font-size: 0.75em;
-      opacity: 0.8;
-      margin-top: 4px;
-    }
-
-    @keyframes pulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
-    }
-
-    /* SLIDER */
-    .slider {
-      position: relative;
-      width: 90%;
-      max-width: 420px;
-      margin: 35px auto;
-      overflow: hidden;
-      border-radius: 26px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.5);
-    }
-
-    .slides {
-      display: flex;
-      transition: transform 0.7s ease;
-    }
-
-    .slides img {
-      width: 100%;
-      flex-shrink: 0;
-      object-fit: cover;
-    }
-
-    .message {
-      padding: 35px 25px;
-      font-size: 1.2em;
-      line-height: 1.7em;
-      color: #e9d5ff;
-    }
-
-    /* HEARTS */
-    .heart {
-      position: fixed;
-      color: var(--purple-soft);
-      font-size: 18px;
-      animation: float 6s linear forwards;
-      pointer-events: none;
-    }
-
-    @keyframes float {
-      from { transform: translateY(100vh); opacity: 1; }
-      to { transform: translateY(-10vh); opacity: 0; }
-    }
-
-    footer {
-      padding: 40px 20px;
-      font-size: 0.9em;
-      opacity: 0.6;
-    }
-  </style>
+footer{padding:40px 20px; opacity:.6}
+</style>
 </head>
 <body>
 
 <div class="start" id="start">
   <h1>Para você, meu amor 💜</h1>
-  <p>Uma lembrança feita com carinho</p>
+  <p>Uma experiência feita com carinho</p>
   <button onclick="startExperience()">Começar</button>
 </div>
 
 <button class="sound-btn" id="soundBtn" onclick="toggleSound()">🔊</button>
-
 <audio id="music" src="musica.mp3" loop></audio>
 
 <header>
   <h2>Kerolayne, meu amor 💜</h2>
-  <div class="counter" id="counter">
+  <div class="counter">
     <div class="time-box"><div class="time-number" id="days">0</div><div class="time-label">DIAS</div></div>
     <div class="time-box"><div class="time-number" id="hours">0</div><div class="time-label">HORAS</div></div>
     <div class="time-box"><div class="time-number" id="minutes">0</div><div class="time-label">MIN</div></div>
@@ -184,90 +114,83 @@
 
 <div class="slider">
   <div class="slides" id="slides">
-    <img src="fotos/foto1.jpg">
-    <img src="fotos/foto2.jpg">
-    <img src="fotos/foto3.jpg">
-    <img src="fotos/foto4.jpg">
+    <img src="fotos/foto1.jpg"><img src="fotos/foto2.jpg"><img src="fotos/foto3.jpg"><img src="fotos/foto4.jpg">
   </div>
 </div>
 
-<div class="message">
-  Desde o dia <strong>06/06/2025</strong>, cada segundo ao seu lado faz minha vida ter mais sentido.
-  <br><br>
-  Você é meu lugar seguro, meu sorriso fácil e minha melhor escolha.
+<div class="buttons">
+  <button class="action-btn" onclick="showMessage()">💌 Mensagem surpresa</button>
+  <button class="action-btn" onclick="spreadHearts()">💜 Espalhar corações</button>
+  <button class="action-btn" onclick="openLetter()">📜 Carta para você</button>
 </div>
 
-<footer>
-  Feito com amor infinito 💜
-</footer>
+<div class="modal" id="letterModal" onclick="closeLetter()">
+  <div class="modal-content">
+    <h3>Minha carta 💜</h3>
+    <p>Desde o dia 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor. Obrigado por ser você, por estar comigo e por transformar meus dias. Eu te amo infinitamente.</p>
+  </div>
+</div>
+
+<footer>Feito com amor infinito 💜</footer>
 
 <script>
-  const START_TIMESTAMP = new Date('2025-06-06T00:00:00').getTime();
-  const slides = document.getElementById('slides');
-  const music = document.getElementById('music');
-  const soundBtn = document.getElementById('soundBtn');
-  let index = 0;
+const START= new Date('2025-06-06T00:00:00').getTime();
+const music=document.getElementById('music');
+const soundBtn=document.getElementById('soundBtn');
+const slides=document.getElementById('slides');
+let index=0;
 
-  function startExperience() {
-    document.getElementById('start').style.display = 'none';
-    soundBtn.style.display = 'block';
-    music.play();
-    setInterval(createHeart, 700);
-    startCounter();
-    startSlider();
-  }
+const messages=[
+  'Você é meu melhor lugar 💜',
+  'Meu amor por você só cresce 💜',
+  'Obrigado por existir 💜',
+  'Com você tudo faz sentido 💜'
+];
 
-  function toggleSound() {
-    if (music.paused) {
-      music.play();
-      soundBtn.innerText = '🔊';
-    } else {
-      music.pause();
-      soundBtn.innerText = '🔇';
-    }
-  }
+function startExperience(){
+  document.getElementById('start').style.display='none';
+  soundBtn.style.display='block';
+  music.play();
+  setInterval(createHeart,800);
+  setInterval(updateCounter,1000);
+  setInterval(slide,3500);
+}
 
-  function startCounter() {
-    setInterval(() => {
-      const now = new Date();
-      let diff = Math.floor((now.getTime() - START_TIMESTAMP) / 1000);
+function toggleSound(){
+  if(music.paused){music.play();soundBtn.innerText='🔊'}
+  else{music.pause();soundBtn.innerText='🔇'}
+}
 
-      const days = Math.floor(diff / 86400);
-      diff %= 86400;
-      const hours = Math.floor(diff / 3600);
-      diff %= 3600;
-      const minutes = Math.floor(diff / 60);
-      const seconds = diff % 60;
+function updateCounter(){
+  const now=Date.now();
+  const diff=now-START;
+  document.getElementById('days').innerText=Math.floor(diff/86400000)+1;
+  document.getElementById('hours').innerText=Math.floor(diff/3600000);
+  document.getElementById('minutes').innerText=Math.floor(diff/60000)%60;
+  document.getElementById('seconds').innerText=Math.floor(diff/1000)%60;
+}
 
-      const totalDays = Math.floor((now.getTime() - START_TIMESTAMP) / 86400000) + 1;
-      const totalHours = Math.floor((now.getTime() - START_TIMESTAMP) / 3600000);((now.getTime() - START_TIMESTAMP) / 3600000);
-      const totalMinutes = Math.floor((now.getTime() - START_TIMESTAMP) / 60000);
-      const totalSeconds = Math.floor((now.getTime() - START_TIMESTAMP) / 1000);
+function slide(){
+  index=(index+1)%slides.children.length;
+  slides.style.transform=`translateX(-${index*100}%)`;
+}
 
-      document.getElementById('days').innerText = totalDays;
-      document.getElementById('hours').innerText = totalHours;
-      document.getElementById('minutes').innerText = totalMinutes % 60;
-      document.getElementById('seconds').innerText = totalSeconds % 60;
-    }, 1000);
-  }
+function showMessage(){
+  alert(messages[Math.floor(Math.random()*messages.length)]);
+}
 
-  function startSlider() {
-    setInterval(() => {
-      index = (index + 1) % slides.children.length;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    }, 3500);
-  }
+function spreadHearts(){
+  for(let i=0;i<20;i++)createHeart();
+}
 
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerText = '💜';
-    heart.style.left = Math.random() * 100 + 'vw';
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }
+function openLetter(){document.getElementById('letterModal').style.display='flex'}
+function closeLetter(){document.getElementById('letterModal').style.display='none'}
+
+function createHeart(){
+  const h=document.createElement('div'); h.className='heart'; h.innerText='💜';
+  h.style.left=Math.random()*100+'vw'; document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
 </script>
-
 </body>
 </html>
-
