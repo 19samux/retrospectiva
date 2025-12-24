@@ -77,8 +77,37 @@
     }
 
     .counter {
-      font-size: 1.1em;
-      opacity: 0.9;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .time-box {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      padding: 14px 18px;
+      min-width: 90px;
+      animation: pulse 1.5s ease-in-out infinite alternate;
+    }
+
+    .time-number {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #f5f3ff;
+    }
+
+    .time-label {
+      font-size: 0.75em;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
     }
 
     /* SLIDER */
@@ -145,7 +174,12 @@
 
 <header>
   <h2>Kerolayne, meu amor 💜</h2>
-  <div class="counter" id="counter"></div>
+  <div class="counter" id="counter">
+    <div class="time-box"><div class="time-number" id="days">0</div><div class="time-label">DIAS</div></div>
+    <div class="time-box"><div class="time-number" id="hours">0</div><div class="time-label">HORAS</div></div>
+    <div class="time-box"><div class="time-number" id="minutes">0</div><div class="time-label">MIN</div></div>
+    <div class="time-box"><div class="time-number" id="seconds">0</div><div class="time-label">SEG</div></div>
+  </div>
 </header>
 
 <div class="slider">
@@ -210,8 +244,10 @@
       const totalMinutes = Math.floor((now.getTime() - START_TIMESTAMP) / 60000);
       const totalSeconds = Math.floor((now.getTime() - START_TIMESTAMP) / 1000);
 
-      document.getElementById('counter').innerText =
-        `Estamos juntos há ${totalHours} horas, ${totalMinutes % 60} minutos e ${totalSeconds % 60} segundos 💜`;
+      document.getElementById('days').innerText = totalDays;
+      document.getElementById('hours').innerText = totalHours;
+      document.getElementById('minutes').innerText = totalMinutes % 60;
+      document.getElementById('seconds').innerText = totalSeconds % 60;
     }, 1000);
   }
 
