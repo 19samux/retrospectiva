@@ -7,206 +7,201 @@
 
 <style>
 *{
- margin:0;
- padding:0;
- box-sizing:border-box;
- user-select:none;
- -webkit-user-select:none;
- -webkit-tap-highlight-color:transparent;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
- font-family:'Segoe UI',sans-serif;
- background:linear-gradient(180deg,#12091c,#1b1026);
- color:#f5f3ff;
- text-align:center;
- overflow-x:hidden;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(180deg,#12091c,#1b1026);
+  color:#f5f3ff;
+  text-align:center;
+  overflow-x:hidden;
 }
 
 button{
- border:none;
- background:none;
- color:inherit;
- cursor:pointer;
+  border:none;
+  background:none;
+  color:inherit;
+  cursor:pointer;
 }
 
 /* START */
 .start{
- position:fixed;
- inset:0;
- background:radial-gradient(circle at top,#6d28d9,#12091c);
- display:flex;
- flex-direction:column;
- justify-content:center;
- align-items:center;
- z-index:5000;
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top,#6d28d9,#12091c);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:5000;
 }
 .start h1{font-size:2.3em}
 .start p{opacity:.8;margin-top:10px}
 .start button{
- margin-top:25px;
- padding:15px 40px;
- border-radius:40px;
- background:linear-gradient(135deg,#a78bfa,#6d28d9);
- font-size:1.1em;
+  margin-top:25px;
+  padding:15px 40px;
+  border-radius:40px;
+  background:linear-gradient(135deg,#a78bfa,#6d28d9);
+  font-size:1.1em;
 }
 
 /* HEADER */
 header{padding:70px 20px 20px}
 .counter{
- display:flex;
- justify-content:center;
- gap:14px;
- flex-wrap:wrap;
- margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:20px;
 }
 .time-box{
- background:rgba(255,255,255,.12);
- border:1px solid rgba(255,255,255,.25);
- border-radius:18px;
- padding:16px 20px;
- min-width:90px;
- animation:pulse 1.2s infinite alternate;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:18px;
+  padding:16px 20px;
+  min-width:90px;
+  animation:pulse 1.2s infinite alternate;
 }
 .time-number{font-size:1.9em;font-weight:bold}
 .time-label{font-size:.7em;opacity:.8}
 @keyframes pulse{
- from{transform:scale(1)}
- to{transform:scale(1.06)}
+  from{transform:scale(1)}
+  to{transform:scale(1.06)}
 }
 
 /* SLIDER */
 .slider{
- width:90%;
- max-width:420px;
- margin:35px auto;
- overflow:hidden;
- border-radius:26px;
- box-shadow:0 20px 45px rgba(0,0,0,.5);
+  width:90%;
+  max-width:420px;
+  margin:35px auto;
+  overflow:hidden;
+  border-radius:26px;
+  box-shadow:0 20px 45px rgba(0,0,0,.5);
 }
 .slides{
- display:flex;
- transition:transform .7s ease;
+  display:flex;
+  transition:transform .7s ease;
 }
 .slides img{
- width:100%;
- flex-shrink:0;
+  width:100%;
+  flex-shrink:0;
 }
 
 /* BUTTONS */
 .buttons{
- display:flex;
- justify-content:center;
- gap:20px;
- padding:30px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  padding:30px;
 }
 .emoji-btn{
- width:64px;
- height:64px;
- border-radius:50%;
- font-size:30px;
- background:rgba(255,255,255,.18);
- border:1px solid rgba(255,255,255,.25);
- backdrop-filter:blur(6px);
- transition:.15s;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  font-size:30px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.25);
+  backdrop-filter:blur(6px);
 }
 .emoji-btn:active{transform:scale(.85)}
 
-/* SECRET PHRASE */
+/* SECRET */
 #secretPhrase{
- display:none;
- margin:25px auto;
- padding:14px 26px;
- border-radius:30px;
- background:rgba(255,255,255,.18);
- border:1px solid rgba(255,255,255,.3);
- animation:shake 2s infinite;
+  display:none;
+  margin:25px auto;
+  padding:14px 26px;
+  border-radius:30px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.3);
+  animation:shake 2s infinite;
 }
 @keyframes shake{
- 0%,100%{transform:translateX(0)}
- 15%{transform:translateX(-2px)}
- 30%{transform:translateX(2px)}
+  0%,100%{transform:translateX(0)}
+  15%{transform:translateX(-2px)}
+  30%{transform:translateX(2px)}
 }
 
 /* MODALS */
 .modal{
- position:fixed;
- inset:0;
- background:radial-gradient(circle at top,#3b1d63,#12091c);
- display:none;
- justify-content:center;
- align-items:center;
- z-index:4000;
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top,#3b1d63,#12091c);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:4000;
 }
 .modal-box{
- background:linear-gradient(180deg,#2a1740,#160b26);
- padding:32px;
- border-radius:22px;
- max-width:90%;
- animation:zoom .25s ease;
+  background:linear-gradient(180deg,#2a1740,#160b26);
+  padding:32px;
+  border-radius:22px;
+  max-width:90%;
+  animation:zoom .25s ease;
 }
 @keyframes zoom{
- from{transform:scale(.85);opacity:0}
- to{transform:scale(1);opacity:1}
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 
 /* HEARTS */
 .heart{
- position:fixed;
- font-size:22px;
- pointer-events:none;
- z-index:6000;
- animation:explode 1.8s ease-out forwards;
+  position:fixed;
+  font-size:22px;
+  pointer-events:none;
+  z-index:6000;
+  animation:explode 1.8s ease-out forwards;
 }
 @keyframes explode{
- from{transform:translate(0,0);opacity:1}
- to{transform:translate(var(--x),var(--y));opacity:0}
+  to{transform:translate(var(--x),var(--y));opacity:0}
 }
 
 /* FIREWORKS */
 .firework{
- position:fixed;
- width:6px;
- height:6px;
- border-radius:50%;
- pointer-events:none;
- z-index:9000;
- animation:firework 1.8s ease-out forwards;
+  position:fixed;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9000;
+  animation:firework 1.8s ease-out forwards;
 }
 @keyframes firework{
- from{transform:translate(0,0) scale(1);opacity:1}
- to{transform:translate(var(--x),var(--y)) scale(.2);opacity:0}
+  to{transform:translate(var(--x),var(--y)) scale(.2);opacity:0}
 }
 
 /* SKY TEXT */
 .sky-text{
- position:fixed;
- top:20%;
- left:50%;
- transform:translateX(-50%);
- font-size:2.2em;
- font-weight:bold;
- opacity:0;
- z-index:8500;
- animation:sky 3s ease forwards;
+  position:fixed;
+  top:20%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:2.2em;
+  font-weight:bold;
+  opacity:0;
+  z-index:8500;
+  animation:sky 3s ease forwards;
 }
 @keyframes sky{
- 0%{opacity:0;transform:translate(-50%,20px)}
- 30%{opacity:1}
- 100%{opacity:0;transform:translate(-50%,-30px)}
+  30%{opacity:1}
+  100%{opacity:0;transform:translate(-50%,-30px)}
 }
 
 /* CHOICE */
 .choice{
- display:flex;
- gap:20px;
- justify-content:center;
- margin-top:25px;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-top:25px;
 }
 .choice button{
- padding:14px 24px;
- border-radius:30px;
- font-size:1em;
+  padding:14px 24px;
+  border-radius:30px;
 }
 .yes{background:#22c55e;color:white}
 .no{background:#ef4444;color:white}
@@ -218,65 +213,65 @@ footer{padding:40px;opacity:.6}
 <body>
 
 <div class="start" id="start">
- <h1>Para você, meu amor 💜</h1>
- <p>Uma experiência feita com carinho</p>
- <button onclick="start()">Começar</button>
+  <h1>Para você, meu amor 💜</h1>
+  <p>Uma experiência feita com carinho</p>
+  <button onclick="start()">Começar</button>
 </div>
 
 <header>
- <h2>Kerolayne, meu amor 💜</h2>
- <div class="counter">
-  <div class="time-box"><div class="time-number" id="days">0</div><div class="time-label">DIAS</div></div>
-  <div class="time-box"><div class="time-number" id="hours">0</div><div class="time-label">HORAS</div></div>
-  <div class="time-box"><div class="time-number" id="minutes">0</div><div class="time-label">MIN</div></div>
-  <div class="time-box"><div class="time-number" id="seconds">0</div><div class="time-label">SEG</div></div>
- </div>
+  <h2>Kerolayne, meu amor 💜</h2>
+  <div class="counter">
+    <div class="time-box"><div class="time-number" id="days">0</div><div class="time-label">DIAS</div></div>
+    <div class="time-box"><div class="time-number" id="hours">0</div><div class="time-label">HORAS</div></div>
+    <div class="time-box"><div class="time-number" id="minutes">0</div><div class="time-label">MIN</div></div>
+    <div class="time-box"><div class="time-number" id="seconds">0</div><div class="time-label">SEG</div></div>
+  </div>
 </header>
 
 <div class="slider">
- <div class="slides" id="slides">
-  <img src="fotos/foto1.jpg">
-  <img src="fotos/foto2.jpg">
-  <img src="fotos/foto3.jpg">
-  <img src="fotos/foto4.jpg">
- </div>
+  <div class="slides" id="slides">
+    <img src="fotos/foto1.jpg">
+    <img src="fotos/foto2.jpg">
+    <img src="fotos/foto3.jpg">
+    <img src="fotos/foto4.jpg">
+  </div>
 </div>
 
 <div class="buttons">
- <button class="emoji-btn" onclick="hearts(event)">❤️</button>
- <button class="emoji-btn" onclick="openLetter()">✉️</button>
- <button class="emoji-btn" onclick="openMessage()">💌</button>
+  <button class="emoji-btn" onclick="hearts(event)">❤️</button>
+  <button class="emoji-btn" onclick="openLetter()">✉️</button>
+  <button class="emoji-btn" onclick="openMessage()">💌</button>
 </div>
 
 <button id="secretPhrase" onclick="openProposal()">Algumas escolhas mudam tudo… 💜</button>
 
 <div class="modal" id="letterModal" onclick="closeAll()">
- <div class="modal-box">
-  <h3>Minha carta 💜</h3>
-  <p>Desde 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor.</p>
- </div>
+  <div class="modal-box">
+    <h3>Minha carta 💜</h3>
+    <p>Desde 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor.</p>
+  </div>
 </div>
 
 <div class="modal" id="msgModal" onclick="closeAll()">
- <div class="modal-box" id="msgBox"></div>
+  <div class="modal-box" id="msgBox"></div>
 </div>
 
 <div class="modal" id="proposalModal">
- <div class="modal-box">
-  <h2>Quer casar comigo? 💍💜</h2>
-  <p>Prometo te amar todos os dias da minha vida.</p>
-  <div class="choice">
-   <button class="yes" onclick="accepted()">Aceito 💍</button>
-   <button class="no" onclick="nope()">Não 🙄</button>
-  </div>
- </div>
+  <div class="modal-box">
+    <h2>Quer casar comigo? 💍💜</h2>
+    <p>Prometo te amar todos os dias da minha vida.</p>
+    <div class="choice">
+      <button class="yes" onclick="accepted()">Aceito 💍</button>
+      <button class="no" onclick="nope()">Não 🙄</button>
+    </div>
+  </div>
 </div>
 
 <div class="modal" id="noModal" onclick="closeAll()">
- <div class="modal-box">
-  <h3>😌💜</h3>
-  <p>Essa opção não existe.</p>
- </div>
+  <div class="modal-box">
+    <h3>😌💜</h3>
+    <p>Essa opção não existe.</p>
+  </div>
 </div>
 
 <footer>Feito com amor infinito 💜</footer>
@@ -287,105 +282,100 @@ const slides=document.getElementById('slides');
 let index=0, clicks=0;
 
 const msgs=[
- 'Você é meu melhor lugar 💜',
- 'Meu amor por você cresce a cada segundo 💜',
- 'Obrigado por existir 💜',
- 'Com você tudo faz sentido 💜'
+  'Você é meu melhor lugar 💜',
+  'Meu amor por você cresce a cada segundo 💜',
+  'Obrigado por existir 💜',
+  'Com você tudo faz sentido 💜'
 ];
 
 function start(){
- document.getElementById('start').style.display='none';
- setInterval(counter,1000);
- setInterval(slide,3500);
+  document.getElementById('start').style.display='none';
+  counter();
+  setInterval(counter,1000);
+  setInterval(slide,3500);
 }
 
 function counter(){
- const diff=Date.now()-START;
- days.innerText=Math.floor(diff/86400000)+1;
- hours.innerText=Math.floor(diff/3600000)%24;
- minutes.innerText=Math.floor(diff/60000)%60;
- seconds.innerText=Math.floor(diff/1000)%60;
+  const diff=Date.now()-START;
+  days.textContent=Math.floor(diff/86400000)+1;
+  hours.textContent=Math.floor(diff/3600000)%24;
+  minutes.textContent=Math.floor(diff/60000)%60;
+  seconds.textContent=Math.floor(diff/1000)%60;
 }
 
 function slide(){
- index=(index+1)%slides.children.length;
- slides.style.transform=`translateX(-${index*100}%)`;
+  index=(index+1)%slides.children.length;
+  slides.style.transform=`translateX(-${index*100}%)`;
 }
 
 function hearts(e){
- clicks++;
- if(clicks===3) secretPhrase.style.display='inline-block';
- for(let i=0;i<25;i++){
-  const h=document.createElement('div');
-  h.className='heart';
-  h.innerText=['❤️','💜','💖','💕'][Math.floor(Math.random()*4)];
-  h.style.left=e.clientX+'px';
-  h.style.top=e.clientY+'px';
-  h.style.setProperty('--x',(Math.random()*300-150)+'px');
-  h.style.setProperty('--y',(Math.random()*300-150)+'px');
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),1800);
- }
+  clicks++;
+  if(clicks===3) secretPhrase.style.display='inline-block';
+  for(let i=0;i<20;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.textContent=['❤️','💜','💖','💕'][Math.floor(Math.random()*4)];
+    h.style.left=e.clientX+'px';
+    h.style.top=e.clientY+'px';
+    h.style.setProperty('--x',(Math.random()*300-150)+'px');
+    h.style.setProperty('--y',(Math.random()*300-150)+'px');
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1800);
+  }
 }
 
 function openLetter(){letterModal.style.display='flex'}
 function openMessage(){
- msgBox.innerText=msgs[Math.floor(Math.random()*msgs.length)];
- msgModal.style.display='flex';
+  msgBox.textContent=msgs[Math.floor(Math.random()*msgs.length)];
+  msgModal.style.display='flex';
 }
 function closeAll(){
- letterModal.style.display='none';
- msgModal.style.display='none';
- proposalModal.style.display='none';
- noModal.style.display='none';
+  document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
 }
 function openProposal(){proposalModal.style.display='flex'}
 
 function accepted(){
- launchFireworks();
- showSkyText();
+  launchFireworks();
+  showSkyText();
 }
 
 function showSkyText(){
- const t=document.createElement('div');
- t.className='sky-text';
- t.innerText='ELA DISSE SIM 💜💍';
- document.body.appendChild(t);
- setTimeout(()=>t.remove(),3000);
+  const t=document.createElement('div');
+  t.className='sky-text';
+  t.textContent='ELA DISSE SIM 💜💍';
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
 }
 
 function launchFireworks(){
- for(let i=0;i<6;i++){
-  setTimeout(()=>{
-   explode(
-    Math.random()*window.innerWidth,
-    Math.random()*window.innerHeight/2
-   );
-  },i*350);
- }
+  for(let i=0;i<6;i++){
+    setTimeout(()=>{
+      explode(Math.random()*innerWidth, Math.random()*innerHeight/2);
+    },i*350);
+  }
 }
 
 function explode(x,y){
- const colors=['#a855f7','#ec4899','#22d3ee','#fde047','#ef4444'];
- for(let i=0;i<60;i++){
-  const p=document.createElement('div');
-  p.className='firework';
-  p.style.background=colors[Math.floor(Math.ran
-dom()*colors.length)];
-  p.style.left=x+'px';
-  p.style.top=y+'px';
-  p.style.setProperty('--x',(Math.random()*600-300)+'px');
-  p.style.setProperty('--y',(Math.random()*600-300)+'px');
-  document.body.appendChild(p);
-  setTimeout(()=>p.remove(),1800);
- }
+  const colors=['#a855f7','#ec4899','#22d3ee','#fde047','#ef4444'];
+  for(let i=0;i<50;i++){
+    const p=document.createElement('div');
+    p.className='firework';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.left=x+'px';
+    p.style.top=y+'px';
+    p.style.setProperty('--x',(Math.random()*600-300)+'px');
+    p.style.setProperty('--y',(Math.random()*600-300)+'px');
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1800);
+  }
 }
 
 function nope(){
- proposalModal.style.display='none';
- noModal.style.display='flex';
+  proposalModal.style.display='none';
+  noModal.style.display='flex';
 }
 </script>
 
 </body>
 </html>
+
