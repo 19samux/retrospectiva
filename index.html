@@ -52,7 +52,24 @@
       cursor: pointer;
     }
 
-    header { padding: 60px 20px 20px; }
+    /* SOUND BUTTON */
+    .sound-btn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--text-light);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+      z-index: 998;
+    }
+
+    header { padding: 70px 20px 20px; }
 
     header h2 {
       font-size: 2.3em;
@@ -122,6 +139,8 @@
   <button onclick="startExperience()">Começar</button>
 </div>
 
+<button class="sound-btn" id="soundBtn" onclick="toggleSound()">🔊</button>
+
 <audio id="music" src="musica.mp3" loop></audio>
 
 <header>
@@ -151,14 +170,27 @@
 <script>
   const startDate = new Date('2025-06-06T00:00:00');
   const slides = document.getElementById('slides');
+  const music = document.getElementById('music');
+  const soundBtn = document.getElementById('soundBtn');
   let index = 0;
 
   function startExperience() {
     document.getElementById('start').style.display = 'none';
-    document.getElementById('music').play();
+    soundBtn.style.display = 'block';
+    music.play();
     setInterval(createHeart, 700);
     startCounter();
     startSlider();
+  }
+
+  function toggleSound() {
+    if (music.paused) {
+      music.play();
+      soundBtn.innerText = '🔊';
+    } else {
+      music.pause();
+      soundBtn.innerText = '🔇';
+    }
   }
 
   function startCounter() {
