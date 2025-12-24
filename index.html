@@ -98,6 +98,17 @@ header{padding:70px 20px 20px;position:relative;z-index:2}
   padding:32px;border-radius:22px;max-width:90%;
 }
 
+/* ❤️ CORAÇÕES */
+.heart{
+  position:fixed;
+  font-size:22px;
+  pointer-events:none;
+  animation:heart 1.6s ease-out forwards;
+}
+@keyframes heart{
+  to{transform:translate(var(--x),var(--y));opacity:0}
+}
+
 /* FOGOS */
 .rocket{position:fixed;width:4px;height:18px;
   background:linear-gradient(to top,#fff,#a855f7);
@@ -133,7 +144,6 @@ footer{padding:40px;opacity:.6}
 <div class="lock" id="lock">
   <div class="lock-box">
     <h2>💜 Só quem ama entra</h2>
-    <p>Digite a senha</p>
     <input type="password" id="password">
     <button id="unlockBtn">Entrar</button>
   </div>
@@ -160,19 +170,18 @@ footer{padding:40px;opacity:.6}
 
 <div class="buttons">
   <button class="emoji-btn" id="heartBtn">❤️</button>
-  <button class="emoji-btn" id="letterBtn">✉️</button>
+  <button class="emoji-btn" id="msgBtn">💌</button>
   <button class="emoji-btn" id="musicBtn">🎵</button>
 </div>
 
 <button id="secretPhrase">Algumas escolhas mudam tudo… 💜</button>
 
-<div class="modal" id="letterModal">
-  <div class="modal-box">
-    <h3>Minha carta 💜</h3>
-    <p>Desde 06/06/2025 minha vida ganhou mais cor, sentido e amor.</p>
-  </div>
+<!-- 💌 MODAL MENSAGEM -->
+<div class="modal" id="msgModal">
+  <div class="modal-box" id="msgBox"></div>
 </div>
 
+<!-- 💍 MODAL PEDIDO -->
 <div class="modal" id="proposalModal">
   <div class="modal-box">
     <h2>Quer casar comigo? 💍💜</h2>
@@ -187,95 +196,87 @@ footer{padding:40px;opacity:.6}
 </audio>
 
 <script>
-/* ELEMENTOS */
-const lock = document.getElementById('lock');
-const passwordInput = document.getElementById('password');
-const unlockBtn = document.getElementById('unlockBtn');
-const slides = document.getElementById('slides');
-const heartBtn = document.getElementById('heartBtn');
-const letterBtn = document.getElementById('letterBtn');
-const musicBtn = document.getElementById('musicBtn');
-const secretPhrase = document.getElementById('secretPhrase');
-const letterModal = document.getElementById('letterModal');
-const proposalModal = document.getElementById('proposalModal');
-const music = document.getElementById('music');
+const PASSWORD="060620";
+const START=new Date('2025-06-06T00:00:00').getTime();
 
-const PASSWORD = "060620";
-const START = new Date('2025-06-06T00:00:00').getTime();
+const slides=document.getElementById('slides');
+const heartBtn=document.getElementById('heartBtn');
+const msgBtn=document.getElementById('msgBtn');
+const musicBtn=document.getElementById('musicBtn');
+const secretPhrase=document.getElementById('secretPhrase');
+const msgModal=document.getElementById('msgModal');
+const msgBox=document.getElementById('msgBox');
+const proposalModal=document.getElementById('proposalModal');
+const music=document.getElementById('music');
 
-let index = 0, clicks = 0, playing = false;
+let index=0, clicks=0, playing=false;
 
-/* SENHA */
-unlockBtn.onclick = () => {
-  if(passwordInput.value === PASSWORD){
-    lock.style.display = 'none';
-    start();
+unlockBtn.onclick=()=>{
+  if(password.value===PASSWORD){
+    lock.style.display='none';
+    setInterval(counter,1000);
+    setInterval(slide,3500);
   }
 };
 
-/* CONTADOR */
-function start(){
-  setInterval(counter,1000);
-  setInterval(slide,3500);
-}
 function counter(){
-  const d = Date.now() - START;
-  days.innerText = Math.floor(d/86400000)+1;
-  hours.innerText = Math.floor(d/3600000)%24;
-  minutes.innerText = Math.floor(d/60000)%60;
-  seconds.innerText = Math.floor(d/1000)%60;
+  const d=Date.now()-START;
+  days.innerText=Math.floor(d/86400000)+1;
+  hours.innerText=Math.floor(d/3600000)%24;
+  minutes.innerText=Math.floor(d/60000)%60;
+  seconds.innerText=Math.floor(d/1000)%60;
 }
 
-/* SLIDER */
 function slide(){
-  index = (index+1)%slides.children.length;
-  slides.style.transform = `translateX(-${index*100}%)`;
+  index=(index+1)%slides.children.length;
+  slides.style.transform=`translateX(-${index*100}%)`;
 }
 
-/* BOTÕES */
-heartBtn.onclick = () => {
+/* ❤️ CORAÇÕES + BOTÃO SECRETO */
+heartBtn.onclick=(e)=>{
   clicks++;
-  if(clicks === 3) secretPhrase.style.display = 'inline-block';
-};
+  if(clicks===3) secretPhrase.style.display='inline-block';
 
-letterBtn.onclick = () => letterModal.style.display = 'flex';
-letterModal.onclick = () => letterModal.style.display = 'none';
-
-musicBtn.onclick = () => {
-  playing = !playing;
-  playing ? music.play() : music.pause();
-};
-
-secretPhrase.onclick = () => proposalModal.style.display = 'flex';
-
-/* FOGOS */
-function accepted(){
-  proposalModal.style.display = 'none';
-  for(let i=0;i<5;i++){
-    setTimeout(()=>{
-      const r=document.createElement('div');
-      r.className='rocket';
-      r.style.left=Math.random()*innerWidth+'px';
-      r.style.top=innerHeight+'px';
-      document.body.appendChild(r);
-      setTimeout(()=>explode(r.offsetLeft,innerHeight-450),1100);
-      setTimeout(()=>r.remove(),1200);
-    },i*350);
+  for(let i=0;i<20;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.innerText=['❤️','💜','💖'][Math.floor(Math.random()*3)];
+    h.style.left=e.clientX+'px';
+    h.style.top=e.clientY+'px';
+    h.style.setProperty('--x',(Math.random()*300-150)+'px');
+    h.style.setProperty('--y',(Math.random()*300-150)+'px');
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1600);
   }
+};
+
+/* 💌 MENSAGEM */
+const msgs=[
+  'Você é meu melhor lugar 💜',
+  'Meu amor por você cresce todo dia 💜',
+  'Com você tudo faz sentido 💜',
+  'Obrigado por existir 💜'
+];
+msgBtn.onclick=()=>{
+  msgBox.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+  msgModal.style.display='flex';
+};
+msgModal.onclick=()=>msgModal.style.display='none';
+
+/* 🎵 MÚSICA */
+musicBtn.onclick=()=>{
+  playing=!playing;
+  playing?music.play():music.pause();
+};
+
+/* 💍 PEDIDO */
+secretPhrase.onclick=()=>proposalModal.style.display='flex';
+
+function accepted(){
+  proposalModal.style.display='none';
   showText();
 }
-function explode(x,y){
-  for(let i=0;i<50;i++){
-    const f=document.createElement('div');
-    f.className='firework';
-    f.style.left=x+'px';
-    f.style.top=y+'px';
-    f.style.setProperty('--x',(Math.random()*600-300)+'px');
-    f.style.setProperty('--y',(Math.random()*600-300)+'px');
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),1800);
-  }
-}
+
 function showText(){
   const t=document.createElement('div');
   t.className='sky-text';
@@ -287,3 +288,4 @@ function showText(){
 
 </body>
 </html>
+
