@@ -3,119 +3,193 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Kerolayne ❤️</title>
+  <title>Kerolayne ❤️ Nossa História</title>
+
   <style>
+    :root {
+      --pink: #ff6f91;
+      --light: #fff5f8;
+      --dark: #7a2e3a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ffd1dc, #fff1f5);
-      color: #7a2e3a;
+      background: linear-gradient(180deg, #ffe3ec, #fff);
+      color: var(--dark);
       text-align: center;
-      overflow-x: hidden;
     }
-    .start-screen {
+
+    /* START SCREEN */
+    .start {
       position: fixed;
       inset: 0;
-      background: linear-gradient(135deg, #ffd1dc, #fff1f5);
+      background: linear-gradient(135deg, #ff9ab3, #ffd1dc);
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      z-index: 10;
-    }
-    .start-screen button {
-      padding: 15px 30px;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 30px;
-      background: #ff6f91;
+      align-items: center;
+      z-index: 999;
       color: #fff;
+      padding: 20px;
+    }
+
+    .start h1 {
+      font-size: 2.4em;
+      margin-bottom: 10px;
+    }
+
+    .start button {
+      margin-top: 25px;
+      padding: 15px 35px;
+      border-radius: 40px;
+      border: none;
+      font-size: 1.1em;
+      background: #fff;
+      color: var(--pink);
       cursor: pointer;
     }
-    header { padding: 40px 20px; }
-    h1 { font-size: 2.5em; }
-    .counter { font-size: 1.2em; margin-top: 10px; }
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      padding: 20px;
-      align-items: center;
+
+    /* HEADER */
+    header {
+      padding: 60px 20px 30px;
     }
-    .gallery img {
-      width: 90vw;
+
+    header h2 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+
+    .counter {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+
+    /* GALLERY */
+    .slider {
+      position: relative;
+      width: 90%;
       max-width: 420px;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      animation: fade 10s infinite;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    .slides img {
+      width: 100%;
+      flex-shrink: 0;
       object-fit: cover;
     }
-    @keyframes fade {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
+
+    /* MESSAGE */
+    .message {
+      padding: 30px 25px;
+      font-size: 1.2em;
+      line-height: 1.6em;
     }
-    .final-message {
-      font-size: 1.3em;
-      padding: 30px;
-    }
+
+    /* HEARTS */
     .heart {
       position: fixed;
-      color: #ff6f91;
-      animation: float 6s linear infinite;
-      font-size: 20px;
+      color: var(--pink);
+      font-size: 18px;
+      animation: float 6s linear forwards;
+      pointer-events: none;
     }
+
     @keyframes float {
-      from { transform: translateY(100vh); opacity: 1; }
-      to { transform: translateY(-10vh); opacity: 0; }
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      padding: 40px 20px;
+      font-size: 0.9em;
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
 
-<div class="start-screen" id="start">
+<!-- START -->
+<div class="start" id="start">
   <h1>Para você, meu amor ❤️</h1>
-  <button onclick="startSite()">Clique para começar</button>
+  <p>Uma pequena lembrança da nossa história</p>
+  <button onclick="startExperience()">Começar</button>
 </div>
-
-<header>
-  <h1>Kerolayne, meu amor 💕</h1>
-  <div class="counter" id="counter"></div>
-</header>
 
 <audio id="music" src="musica.mp3" loop></audio>
 
-<section class="gallery">
-  <img src="fotos/foto1.jpg" />
-  <img src="fotos/foto2.jpg" />
-  <img src="fotos/foto3.jpg" />
-  <img src="fotos/foto4.jpg" />
-</section>
+<header>
+  <h2>Kerolayne, meu amor 💕</h2>
+  <div class="counter" id="counter"></div>
+</header>
 
-<div class="final-message">
-  Kerolayne, cada momento ao seu lado é um presente. Obrigado por ser meu amor 💖
+<!-- SLIDER -->
+<div class="slider">
+  <div class="slides" id="slides">
+    <img src="fotos/foto1.jpg">
+    <img src="fotos/foto2.jpg">
+    <img src="fotos/foto3.jpg">
+    <img src="fotos/foto4.jpg">
+  </div>
 </div>
 
-<script>
-  const startDate = new Date('2025-06-06'); // ALTERE PARA A DATA DE VOCÊS
+<div class="message">
+  Desde o dia <strong>06/06/2025</strong>, minha vida ficou mais bonita com você.
+  <br><br>
+  Cada sorriso, cada momento e cada detalhe ao seu lado fazem tudo valer a pena.
+  <br><br>
+  Obrigado por ser exatamente quem você é. ❤️
+</div>
 
-  function startSite() {
+<footer>
+  Feito com amor, só para você 🌸
+</footer>
+
+<script>
+  const startDate = new Date('2025-06-06');
+  const slides = document.getElementById('slides');
+  let index = 0;
+
+  function startExperience() {
     document.getElementById('start').style.display = 'none';
     document.getElementById('music').play();
-    setInterval(createHeart, 800);
+    setInterval(createHeart, 700);
+    startCounter();
+    startSlider();
   }
 
-  function updateCounter() {
+  function startCounter() {
     setInterval(() => {
       const now = new Date();
-      const diff = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-      document.getElementById('counter').innerText = `Estamos juntos há ${diff} dias ❤️`;
+      const days = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+      document.getElementById('counter').innerText = `Estamos juntos há ${days} dias ❤️`;
     }, 1000);
   }
 
-  updateCounter();
+  function startSlider() {
+    setInterval(() => {
+      index = (index + 1) % slides.children.length;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    }, 3500);
+  }
 
   function createHeart() {
     const heart = document.createElement('div');
@@ -129,4 +203,3 @@
 
 </body>
 </html>
-
