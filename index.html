@@ -32,6 +32,7 @@ button{
  outline:none;
 }
 
+/* START */
 .start{
  position:fixed;
  inset:0;
@@ -40,12 +41,10 @@ button{
  flex-direction:column;
  justify-content:center;
  align-items:center;
- z-index:3000;
+ z-index:5000;
 }
-
 .start h1{font-size:2.3em}
 .start p{opacity:.8;margin-top:10px}
-
 .start button{
  margin-top:25px;
  padding:15px 40px;
@@ -54,6 +53,7 @@ button{
  font-size:1.1em;
 }
 
+/* HEADER */
 header{padding:70px 20px 20px}
 header h2{font-size:2.2em}
 
@@ -64,24 +64,22 @@ header h2{font-size:2.2em}
  flex-wrap:wrap;
  margin-top:20px;
 }
-
 .time-box{
  background:rgba(255,255,255,.12);
  border:1px solid rgba(255,255,255,.25);
  border-radius:18px;
  padding:16px 20px;
  min-width:90px;
- animation:pulse 1.3s infinite alternate;
+ animation:pulse 1.2s infinite alternate;
 }
-
 .time-number{font-size:1.9em;font-weight:bold}
 .time-label{font-size:.7em;opacity:.8}
-
 @keyframes pulse{
  from{transform:scale(1)}
- to{transform:scale(1.07)}
+ to{transform:scale(1.06)}
 }
 
+/* SLIDER */
 .slider{
  width:90%;
  max-width:420px;
@@ -90,24 +88,22 @@ header h2{font-size:2.2em}
  border-radius:26px;
  box-shadow:0 20px 45px rgba(0,0,0,.5);
 }
-
 .slides{
  display:flex;
  transition:transform .7s ease;
 }
-
 .slides img{
  width:100%;
  flex-shrink:0;
 }
 
+/* BUTTONS */
 .buttons{
  display:flex;
  justify-content:center;
  gap:20px;
  padding:30px;
 }
-
 .emoji-btn{
  width:64px;
  height:64px;
@@ -116,31 +112,29 @@ header h2{font-size:2.2em}
  background:rgba(255,255,255,.18);
  border:1px solid rgba(255,255,255,.25);
  backdrop-filter:blur(6px);
- transition:.2s;
+ transition:.15s;
 }
-
 .emoji-btn:active{transform:scale(.85)}
 .emoji-btn:hover{box-shadow:0 0 20px rgba(167,139,250,.7)}
 
+/* SECRET BUTTON */
 #secretPhrase{
  display:none;
- margin:30px auto;
+ margin:25px auto;
  padding:14px 26px;
  border-radius:30px;
  font-size:.95em;
- background:rgba(255,255,255,.15);
+ background:rgba(255,255,255,.18);
  border:1px solid rgba(255,255,255,.3);
- animation:shake 2.5s infinite;
+ animation:shake 2s infinite;
 }
-
 @keyframes shake{
  0%,100%{transform:translateX(0)}
- 10%{transform:translateX(-2px)}
- 20%{transform:translateX(2px)}
- 30%{transform:translateX(-2px)}
- 40%{transform:translateX(2px)}
+ 15%{transform:translateX(-2px)}
+ 30%{transform:translateX(2px)}
 }
 
+/* MODALS */
 .modal{
  position:fixed;
  inset:0;
@@ -148,50 +142,49 @@ header h2{font-size:2.2em}
  display:none;
  justify-content:center;
  align-items:center;
- z-index:2000;
+ z-index:4000;
 }
-
 .modal-box{
  background:linear-gradient(180deg,#2a1740,#160b26);
  padding:32px;
  border-radius:22px;
  max-width:90%;
- animation:zoom .4s ease;
+ animation:zoom .25s ease;
 }
-
 @keyframes zoom{
- from{transform:scale(.8);opacity:0}
+ from{transform:scale(.85);opacity:0}
  to{transform:scale(1);opacity:1}
 }
 
+/* HEARTS */
 .heart{
  position:fixed;
  font-size:22px;
  pointer-events:none;
- animation:explode 1.8s ease-out forwards;
+ z-index:6000;
+ animation:explode 2.2s ease-out forwards;
 }
-
 @keyframes explode{
  from{transform:translate(0,0);opacity:1}
  to{transform:translate(var(--x),var(--y));opacity:0}
 }
 
+/* CHOICE */
 .choice{
  display:flex;
  gap:20px;
  justify-content:center;
  margin-top:25px;
 }
-
 .choice button{
- padding:12px 22px;
+ padding:14px 24px;
  border-radius:30px;
  font-size:1em;
 }
-
 .yes{background:#22c55e;color:white}
 .no{background:#ef4444;color:white}
 
+/* FOOTER */
 footer{
  padding:40px 20px;
  opacity:.6;
@@ -232,14 +225,12 @@ footer{
  <button class="emoji-btn" onclick="openMessage()">💌</button>
 </div>
 
-<button id="secretPhrase" onclick="openProposal(event)">
- Algumas escolhas mudam tudo… 💜
-</button>
+<button id="secretPhrase" onclick="openProposal()">Algumas escolhas mudam tudo… 💜</button>
 
 <div class="modal" id="letterModal" onclick="closeAll()">
  <div class="modal-box">
   <h3>Minha carta 💜</h3>
-  <p>Desde o dia 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor. Eu te amo infinitamente.</p>
+  <p>Desde 06/06/2025 minha vida ganhou mais cor, mais sentido e mais amor. Eu te amo infinitamente.</p>
  </div>
 </div>
 
@@ -255,6 +246,13 @@ footer{
    <button class="yes" onclick="accepted()">Aceito 💍</button>
    <button class="no" onclick="nope()">Não 🙄</button>
   </div>
+ </div>
+</div>
+
+<div class="modal" id="noModal" onclick="closeAll()">
+ <div class="modal-box">
+  <h3>😌💜</h3>
+  <p>Essa opção não existe.</p>
  </div>
 </div>
 
@@ -296,17 +294,16 @@ function hearts(e){
  if(clicks===3){
    document.getElementById('secretPhrase').style.display='inline-block';
  }
- const icons=['❤️','💜','💖','💕'];
  for(let i=0;i<30;i++){
   const h=document.createElement('div');
   h.className='heart';
-  h.innerText=icons[Math.floor(Math.random()*icons.length)];
+  h.innerText=['❤️','💜','💖','💕'][Math.floor(Math.random()*4)];
   h.style.left=e.clientX+'px';
   h.style.top=e.clientY+'px';
   h.style.setProperty('--x',(Math.random()*300-150)+'px');
   h.style.setProperty('--y',(Math.random()*300-150)+'px');
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),1800);
+  setTimeout(()=>h.remove(),2200);
  }
 }
 
@@ -319,34 +316,35 @@ function closeAll(){
  letterModal.style.display='none';
  msgModal.style.display='none';
  proposalModal.style.display='none';
+ noModal.style.display='none';
 }
 
-function openProposal(e){
- e.preventDefault();
+function openProposal(){
  proposalModal.style.display='flex';
 }
 
 function accepted(){
- for(let i=0;i<120;i++){
+ for(let i=0;i<140;i++){
   const h=document.createElement('div');
   h.className='heart';
   h.innerText='💜';
   h.style.left='50%';
   h.style.top='50%';
-  h.style.fontSize=(Math.random()*22+16)+'px';
-  h.style.setProperty('--x',(Math.random()*600-300)+'px');
-  h.style.setProperty('--y',(Math.random()*600-300)+'px');
+  h.style.fontSize=(Math.random()*24+18)+'px';
+  h.style.setProperty('--x',(Math.random()*700-350)+'px');
+  h.style.setProperty('--y',(Math.random()*700-350)+'px');
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),2000);
+  setTimeout(()=>h.remove(),2300);
  }
  localStorage.setItem('sheSaidYes','true');
  proposalModal.querySelector('h2').innerText='Ela disse SIM 💜💍';
  proposalModal.querySelector('p').innerText='Esse momento vai ficar guardado para sempre.';
- setTimeout(()=>proposalModal.style.display='none',4000);
+ setTimeout(()=>proposalModal.style.display='none',4500);
 }
 
 function nope(){
- alert('Essa opção não existe 😌💜');
+ proposalModal.style.display='none';
+ noModal.style.display='flex';
 }
 </script>
 
