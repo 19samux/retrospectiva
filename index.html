@@ -24,29 +24,37 @@ body{
 .start{
  position:fixed; inset:0;
  background:radial-gradient(circle at top,var(--purple-main),var(--purple-dark));
- display:flex; flex-direction:column; justify-content:center; align-items:center;
+ display:flex; flex-direction:column;
+ justify-content:center; align-items:center;
  z-index:999;
 }
 .start h1{font-size:2.3em}
 .start button{
- margin-top:25px; padding:15px 40px;
- border-radius:40px; border:none;
- font-size:1.1em; cursor:pointer;
+ margin-top:25px;
+ padding:15px 40px;
+ border-radius:40px;
+ border:none;
+ font-size:1.1em;
+ cursor:pointer;
  background:linear-gradient(135deg,var(--purple-soft),var(--purple-main));
 }
 .sound-btn{
  position:fixed; top:15px; right:15px;
- width:44px; height:44px; border-radius:50%;
+ width:44px; height:44px;
+ border-radius:50%;
  background:rgba(255,255,255,.15);
  border:1px solid rgba(255,255,255,.25);
- color:var(--text); font-size:18px;
- display:none; z-index:10;
+ color:var(--text);
+ font-size:18px;
+ display:none;
+ z-index:10;
 }
 header{padding:70px 20px 20px}
 header h2{font-size:2.2em}
 .counter{
- display:flex; justify-content:center; gap:16px;
- flex-wrap:wrap; margin-top:20px;
+ display:flex; justify-content:center;
+ gap:16px; flex-wrap:wrap;
+ margin-top:20px;
 }
 .time-box{
  background:rgba(255,255,255,.12);
@@ -58,7 +66,10 @@ header h2{font-size:2.2em}
 }
 .time-number{font-size:1.8em;font-weight:bold}
 .time-label{font-size:.7em;opacity:.8}
-@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.05)}}
+@keyframes pulse{
+ from{transform:scale(1)}
+ to{transform:scale(1.05)}
+}
 
 .slider{
  width:90%; max-width:420px;
@@ -67,33 +78,25 @@ header h2{font-size:2.2em}
  border-radius:26px;
  box-shadow:0 20px 45px rgba(0,0,0,.5);
 }
-.slides{display:flex; transition:transform .7s ease}
-.slides img{width:100%; flex-shrink:0}
+.slides{display:flex;transition:transform .7s ease}
+.slides img{width:100%;flex-shrink:0}
 
 .buttons{
- display:flex; justify-content:center;
- gap:20px; padding:30px;
+ display:flex;justify-content:center;
+ gap:20px;padding:30px;
 }
 .emoji-btn{
- width:64px; height:64px;
+ width:64px;height:64px;
  border-radius:50%;
  font-size:30px;
- border:none; cursor:pointer;
+ border:none;cursor:pointer;
  background:rgba(255,255,255,.18);
  border:1px solid rgba(255,255,255,.25);
  backdrop-filter:blur(6px);
- transition:transform .2s ease, box-shadow .2s ease;
+ transition:.2s;
 }
 .emoji-btn:active{transform:scale(.85)}
 .emoji-btn:hover{box-shadow:0 0 20px rgba(167,139,250,.6)}
-
-.secret-btn{
- opacity:.08;
- position:fixed;
- bottom:8px; right:8px;
- font-size:12px;
- cursor:pointer;
-}
 
 .modal{
  position:fixed; inset:0;
@@ -101,17 +104,18 @@ header h2{font-size:2.2em}
  display:none;
  justify-content:center; align-items:center;
  z-index:1000;
- animation:fade .3s ease;
 }
 .modal-box{
  background:linear-gradient(180deg,#2a1740,#160b26);
  padding:30px;
  border-radius:22px;
  max-width:90%;
- animation:scaleIn .4s ease;
+ animation:zoom .4s ease;
 }
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes scaleIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes zoom{
+ from{transform:scale(.8);opacity:0}
+ to{transform:scale(1);opacity:1}
+}
 
 .heart{
  position:fixed;
@@ -120,13 +124,12 @@ header h2{font-size:2.2em}
  animation:explode 1.8s ease-out forwards;
 }
 @keyframes explode{
- from{transform:translate(0,0) scale(1); opacity:1}
- to{transform:translate(var(--x),var(--y)) scale(.5); opacity:0}
+ from{transform:translate(0,0);opacity:1}
+ to{transform:translate(var(--x),var(--y));opacity:0}
 }
 
 .choice{
- display:flex;
- gap:20px;
+ display:flex;gap:20px;
  justify-content:center;
  margin-top:25px;
 }
@@ -137,10 +140,19 @@ header h2{font-size:2.2em}
  font-size:1em;
  cursor:pointer;
 }
-.yes{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
-.no{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff}
+.yes{background:#22c55e;color:#fff}
+.no{background:#ef4444;color:#fff}
 
-footer{padding:40px 20px; opacity:.6}
+#secretPhrase{
+ display:none;
+ margin:30px auto;
+ font-size:.95em;
+ opacity:.7;
+ cursor:pointer;
+ transition:.3s;
+}
+
+footer{padding:40px 20px;opacity:.6}
 </style>
 </head>
 
@@ -180,7 +192,9 @@ footer{padding:40px 20px; opacity:.6}
  <button class="emoji-btn" onclick="openMessage()">💌</button>
 </div>
 
-<div class="secret-btn" onclick="openProposal()">.</div>
+<div id="secretPhrase" onclick="openProposal()">
+ Algumas escolhas mudam tudo… 💜
+</div>
 
 <div class="modal" id="letterModal" onclick="closeModal()">
  <div class="modal-box">
@@ -212,6 +226,7 @@ const music=document.getElementById('music');
 const soundBtn=document.getElementById('soundBtn');
 const slides=document.getElementById('slides');
 let index=0;
+let heartClicks=0;
 
 const msgs=[
  'Você é meu melhor lugar 💜',
@@ -229,8 +244,8 @@ function startExperience(){
 }
 
 function toggleSound(){
- music.paused ? (music.play(),soundBtn.innerText='🔊')
- : (music.pause(),soundBtn.innerText='🔇');
+ music.paused?(music.play(),soundBtn.innerText='🔊')
+ :(music.pause(),soundBtn.innerText='🔇');
 }
 
 function updateCounter(){
@@ -247,6 +262,10 @@ function slide(){
 }
 
 function explodeHearts(e){
+ heartClicks++;
+ if(heartClicks===3){
+   document.getElementById('secretPhrase').style.display='block';
+ }
  const c=['❤️','💜','💖','💕'];
  for(let i=0;i<30;i++){
   const h=document.createElement('div');
@@ -274,14 +293,12 @@ function closeModal(){
 function openProposal(){proposalModal.style.display='flex'}
 
 function accepted(){
- explodeHearts({clientX:window.innerWidth/2,clientY:window.innerHeight/2});
+ explodeHearts({clientX:innerWidth/2,clientY:innerHeight/2});
  localStorage.setItem('sheSaidYes','true');
-
  const modal=document.getElementById('proposalModal');
  modal.querySelector('h2').innerText='Ela disse SIM 💜💍';
  modal.querySelector('p').innerText='Esse momento vai ficar guardado para sempre.';
-
- setTimeout(()=>{modal.style.display='none'},3500);
+ setTimeout(()=>modal.style.display='none',3500);
 }
 
 function nope(){
@@ -291,4 +308,3 @@ function nope(){
 
 </body>
 </html>
-
