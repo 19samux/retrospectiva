@@ -1,1 +1,155 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Kerolayne ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffd1dc, #fff1f5);
+      color: #7a2e3a;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .start-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ffd1dc, #fff1f5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .start-screen button {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 30px;
+      background: #ff6f91;
+      color: #fff;
+      cursor: pointer;
+    }
+    header { padding: 40px 20px; }
+    h1 { font-size: 2.5em; }
+    .counter { font-size: 1.2em; margin-top: 10px; }
+    .controls {
+      background: rgba(255,255,255,0.6);
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px;
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #f3a4b5;
+      width: 90%;
+      max-width: 400px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      animation: fade 8s infinite;
+    }
+    @keyframes fade {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .final-message {
+      font-size: 1.3em;
+      padding: 30px;
+    }
+    .heart {
+      position: fixed;
+      color: #ff6f91;
+      animation: float 6s linear infinite;
+      font-size: 20px;
+    }
+    @keyframes float {
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="start-screen" id="start">
+  <h1>Para você, meu amor ❤️</h1>
+  <button onclick="startSite()">Clique para começar</button>
+</div>
+
+<header>
+  <h1>Kerolayne, meu amor 💕</h1>
+  <div class="counter" id="counter"></div>
+</header>
+
+<div class="controls">
+  <input type="date" id="dateInput" />
+  <input type="file" id="photoInput" accept="image/*" multiple />
+  <input type="file" id="musicInput" accept="audio/*" />
+  <button onclick="applyChanges()">Aplicar</button>
+  <audio id="music" controls style="width:90%;"></audio>
+</div>
+
+<section class="gallery" id="gallery"></section>
+
+<div class="final-message">
+  Kerolayne, cada momento ao seu lado é um presente. Obrigado por ser meu amor 💖
+</div>
+
+<script>
+  function startSite() {
+    document.getElementById('start').style.display = 'none';
+    document.getElementById('music').play();
+    setInterval(createHeart, 800);
+  }
+
+  function applyChanges() {
+    const date = new Date(document.getElementById('dateInput').value);
+    if (date) updateCounter(date);
+
+    const gallery = document.getElementById('gallery');
+    gallery.innerHTML = '';
+    Array.from(document.getElementById('photoInput').files).forEach((file, i) => {
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.style.animationDelay = `${i * 4}s`;
+      gallery.appendChild(img);
+    });
+
+    const musicFile = document.getElementById('musicInput').files[0];
+    if (musicFile) document.getElementById('music').src = URL.createObjectURL(musicFile);
+  }
+
+  function updateCounter(startDate) {
+    setInterval(() => {
+      const now = new Date();
+      const diff = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+      document.getElementById('counter').innerText = `Estamos juntos há ${diff} dias ❤️`;
+    }, 1000);
+  }
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+</script>
+
+</body>
+</html>
